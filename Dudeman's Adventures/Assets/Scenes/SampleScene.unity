@@ -1198,7 +1198,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 1
-      m_TileSpriteIndex: 0
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1220,10 +1220,10 @@ Tilemap:
   - m_RefCount: 48
     m_Data: {fileID: 11400000, guid: 4778dc88014c9bb46a0e2b66a924e6d9, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 1
-    m_Data: {fileID: 21300000, guid: 688ec8e267e808f4f806e6f7bca9f154, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 688ec8e267e808f4f806e6f7bca9f154, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 0dec2c7433938a348a601b4c6a3eb002, type: 3}
   - m_RefCount: 13
@@ -1441,6 +1441,7 @@ GameObject:
   - component: {fileID: 1164682732}
   - component: {fileID: 1164682731}
   - component: {fileID: 1164682736}
+  - component: {fileID: 1164682737}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -1527,7 +1528,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.24090892, y: 0.18602943}
+  m_Offset: {x: -0.13118356, y: 0.44630814}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1538,7 +1539,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9452654, y: 1.6075311}
+  m_Size: {x: 0.69519365, y: 1.0869737}
   m_EdgeRadius: 0
 --- !u!50 &1164682732
 Rigidbody2D:
@@ -1587,7 +1588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1164682735}
   animator: {fileID: 1164682736}
-  runSpeed: 70
+  runSpeed: 50
 --- !u!114 &1164682735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1600,7 +1601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9f77a66ee6c8a14f8ba47e5c65076ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 700
+  m_JumpForce: 70
   m_CrouchSpeed: 0.36
   m_MovementSmoothing: 0
   m_AirControl: 1
@@ -1647,6 +1648,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!58 &1164682737
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164682728}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.22200274, y: -0.13269114}
+  serializedVersion: 2
+  m_Radius: 0.5068188
 --- !u!1 &1768339543
 GameObject:
   m_ObjectHideFlags: 0
