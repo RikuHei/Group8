@@ -9,6 +9,9 @@ public class RestartController : MonoBehaviour
     Rigidbody2D rb;
     AudioSource audioSource;
 
+    // if player falls below this point, the game will restart
+    private float fallZone = -30f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +37,10 @@ public class RestartController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (rb.velocity.y < -30){
+        // track player position whitout resetting the y axis value
+        // if player fall below fallZone value (-30) game will restart
+        if (rb.transform.position.y < fallZone)
+        {
             Destroy(gameObject);
             RestartScene();
         }
