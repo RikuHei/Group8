@@ -7,6 +7,7 @@ public class MovementController : MonoBehaviour
 {
 
     public CharacterController2D controller;
+    public Animator animator;
     AudioSource audioSource;
     bool isMoving = false;
     public float runSpeed = 40f;
@@ -25,11 +26,14 @@ public class MovementController : MonoBehaviour
 
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+
         if (Input.GetButtonDown("Jump"))
         {
             jump = true;
         }
     }
+
 
     void FixedUpdate()
     {
