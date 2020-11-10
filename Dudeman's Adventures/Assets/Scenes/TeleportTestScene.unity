@@ -1458,7 +1458,8 @@ GameObject:
   - component: {fileID: 1164682733}
   - component: {fileID: 1164682732}
   - component: {fileID: 1164682731}
-  m_Layer: 0
+  - component: {fileID: 1164682736}
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1603,7 +1604,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1164682735}
-  runSpeed: 150
+  animator: {fileID: 1164682736}
+  runSpeed: 70
 --- !u!114 &1164682735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1626,12 +1628,32 @@ MonoBehaviour:
   m_GroundCheck: {fileID: 1826493552}
   m_CeilingCheck: {fileID: 82831944}
   m_CrouchDisableCollider: {fileID: 0}
+  animator: {fileID: 0}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
   OnCrouchEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &1164682736
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164682728}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e2c6bf61bc46fb04b9e408a8e4ca439f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1768339543
 GameObject:
   m_ObjectHideFlags: 0
