@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class CharacterController2D : MonoBehaviour
 {
-    [SerializeField] private float m_JumpForce = 400f;                          // Amount of force added when the player jumps.
+    [SerializeField] private float m_JumpForce = 70f;                          // Amount of force added when the player jumps.
     [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;          // Amount of maxSpeed applied to crouching movement. 1 = 100%
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
     [SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping;
@@ -31,6 +31,9 @@ public class CharacterController2D : MonoBehaviour
     public BoolEvent OnCrouchEvent;
     private bool m_wasCrouching = false;
 
+    private int defaultPlayerGravity = 1;
+    private int playerJumpGravity = 15;
+
     private void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -48,7 +51,7 @@ public class CharacterController2D : MonoBehaviour
         bool wasGrounded = m_Grounded;
         m_Grounded = false;
         animator.SetBool("IsJumping", true);
-        m_Rigidbody2D.gravityScale = 15;
+        m_Rigidbody2D.gravityScale = playerJumpGravity;
 
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
@@ -59,7 +62,7 @@ public class CharacterController2D : MonoBehaviour
             {
                 m_Grounded = true;
                 animator.SetBool("IsJumping", false);
-                m_Rigidbody2D.gravityScale = 1;
+                m_Rigidbody2D.gravityScale = defaultPlayerGravity;
                 if (!wasGrounded)
                     OnLandEvent.Invoke();
             }
@@ -83,7 +86,7 @@ public class CharacterController2D : MonoBehaviour
         if (m_Grounded || m_AirControl)
         {
             animator.SetBool("IsJumping", false);
-            m_Rigidbody2D.gravityScale = 1;
+            m_Rigidbody2D.gravityScale = defaultPlayerGravity;
 
             // If crouching
             if (crouch)
@@ -138,7 +141,8 @@ public class CharacterController2D : MonoBehaviour
             // Add a vertical force to the player.
             m_Grounded = false;
             animator.SetBool("IsJumping", true);
-            m_Rigidbody2D.gravityScale = 15;
+            m_Rigidbody2D.gravityScale = playerJumpGravity;
+
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce), ForceMode2D.Impulse);
         }
     }

@@ -10,7 +10,7 @@ public class MovementController : MonoBehaviour
     public Animator animator;
     AudioSource audioSource;
     bool isMoving = false;
-    public float runSpeed = 40f;
+    public float runSpeed = 50f;
     float horizontalMove = 0f;
     bool jump = false;
 
