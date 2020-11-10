@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: PurpleTile_Break2
+  m_Name: PurpleTile_Right_Shadow
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: d779122bff7a27e42b20f07bf9e003db, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8adc70c171f55594b8a8741c8968690e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
