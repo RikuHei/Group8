@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030ba6420e79e8f41ab488fef8047966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Teleporter: {fileID: 736801442}
+  TeleportToLocation: {fileID: 736801442}
   Player: {fileID: 1164682728}
 --- !u!61 &297912504
 BoxCollider2D:
@@ -1695,7 +1695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030ba6420e79e8f41ab488fef8047966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Teleporter: {fileID: 557651596}
+  TeleportToLocation: {fileID: 557651596}
   Player: {fileID: 1164682728}
 --- !u!61 &1773570752
 BoxCollider2D:
