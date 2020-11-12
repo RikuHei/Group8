@@ -12,6 +12,7 @@ public class RestartController : MonoBehaviour
     // if player falls below this point, the game will restart
     private float fallZone = -30f;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +45,7 @@ public class RestartController : MonoBehaviour
             Destroy(gameObject);
             RestartScene();
         }
+
     }
 
     void FixedUpdate()
