@@ -8,6 +8,8 @@ public class RestartController : MonoBehaviour
 
     Rigidbody2D rb;
     AudioSource audioSource;
+
+    // if player falls below this point, the game will restart
     private float fallZone = -30f;
 
 
