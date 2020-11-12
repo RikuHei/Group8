@@ -6,6 +6,9 @@ public class BlockBreakByPlayerStep : MonoBehaviour
 {
 
     Rigidbody2D rb;
+
+    [SerializeField] private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,14 +19,9 @@ public class BlockBreakByPlayerStep : MonoBehaviour
     {
         if (col.gameObject.name.Equals("Player"))
         {
-            Invoke("BreakPlatform", 0.1f);
-            Destroy(gameObject, 0.1f);
+            animator.SetBool("playerCollided", true);
+            Destroy(gameObject, 1f);
         }
-    }
-
-    void BreakPlatform()
-    {
-        rb.isKinematic = false;
     }
 
     // Update is called once per frame
