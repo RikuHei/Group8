@@ -10,6 +10,7 @@ public class RestartController : MonoBehaviour
     AudioSource audioSource;
     private float fallZone = -30f;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +43,7 @@ public class RestartController : MonoBehaviour
             Destroy(gameObject);
             RestartScene();
         }
+
     }
 
     void FixedUpdate()
