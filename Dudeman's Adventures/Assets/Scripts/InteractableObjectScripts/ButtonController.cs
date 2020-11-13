@@ -7,6 +7,7 @@ public class ButtonController : MonoBehaviour
 
     public bool buttonIsActivated = false; 
     private bool characterInRange = false;
+    public Animator animator;
 
     // Update is called once per frame
     void Update()
@@ -23,16 +24,19 @@ public class ButtonController : MonoBehaviour
 
     public void ButtonPress()
     {
+        animator = GetComponent<Animator>();
         if (buttonIsActivated == false)
         {
             buttonIsActivated = true;
             Debug.Log("Button activated");
+            animator.SetBool("IsButtonPressed", true);
         }
 
         else if (buttonIsActivated == true)
         {
             buttonIsActivated = false;
             Debug.Log("Button disabled");
+            animator.SetBool("IsButtonPressed", false);
         }
     }
 
