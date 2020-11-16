@@ -12,11 +12,14 @@ public class DoorController : MonoBehaviour
     int notActivatedPlates = 0;
     int notActivatedButtons = 0;
 
+    public Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
         GetNOPlates();
         GetNOButtons();
+        animator = GetComponent<Animator>();
     }
 
     public int GetNOPlates()
@@ -65,7 +68,8 @@ public class DoorController : MonoBehaviour
     public void OpenDoor()
     {
         GetComponent<Collider2D>().enabled = false;
-        GetComponent<SpriteRenderer>().enabled = false;
+        animator.SetBool("OpenDoor", true);
+        //GetComponent<SpriteRenderer>().enabled = false;
     }
 
     //We can use this to make the door appear again if for example one of the pressure plates is unactivated
