@@ -19,7 +19,9 @@ public class CharacterController2D : MonoBehaviour
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private Vector3 m_Velocity = Vector3.zero;
     public Animator animator;
-    public GameObject firePoint;
+    public Transform firePoint;
+
+    Vector3 localScale;
 
     [Header("Events")]
     [Space]
@@ -53,6 +55,8 @@ public class CharacterController2D : MonoBehaviour
         m_Grounded = false;
         animator.SetBool("IsJumping", true);
         m_Rigidbody2D.gravityScale = playerJumpGravity;
+
+        CheckWeaponDirection();
 
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
@@ -157,9 +161,28 @@ public class CharacterController2D : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
-
-        //Flip the firepoint
-        firePoint.transform.Rotate(0f, 180f, 0f);
-
     }
+    
+	void CheckWeaponDirection()
+	{
+		if (Input.GetKey (KeyCode.W))
+        {
+            firePoint.rotation = Quaternion.Euler(0, 0, 90 * transform.localScale.y);
+        }
+        else if(Input.GetKey (KeyCode.S))
+        {
+            firePoint.rotation = Quaternion.Euler(0, 0, 270 * transform.localScale.y);
+        }
+        else
+        {
+            if(m_FacingRight)
+            {
+                firePoint.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else if(!m_FacingRight)
+            {
+                firePoint.rotation = Quaternion.Euler(0, 180, 0);
+            }
+        }
+	}
 }

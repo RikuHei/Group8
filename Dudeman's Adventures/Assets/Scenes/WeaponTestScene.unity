@@ -339,7 +339,7 @@ MonoBehaviour:
   m_CeilingCheck: {fileID: 1977884230}
   m_CrouchDisableCollider: {fileID: 0}
   animator: {fileID: 0}
-  firePoint: {fileID: 2094634544}
+  firePoint: {fileID: 2094634545}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:
