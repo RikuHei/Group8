@@ -5,23 +5,14 @@ using UnityEngine;
 public class TurretController : MonoBehaviour
 {
     public float Range;
-
     public Transform Target;
-
     bool Detected = false;
-
     Vector2 Direction;
-
     public GameObject Gun;
-
     public GameObject Bullet;
-
     public float FireRate;
-
     float nextTimeToFire = 0;
-
     public Transform ShootPoint;
-
     public float Force;
 
     // Start is called before the first frame update
@@ -63,8 +54,9 @@ public class TurretController : MonoBehaviour
             Gun.transform.right = Direction;
             if(Time.time > nextTimeToFire)
             {
-                nextTimeToFire = Time.time+1/FireRate;
+                nextTimeToFire = Time.time+4/FireRate;
                 shoot();
+                Debug.Log("pew");
             }
         }
     }
