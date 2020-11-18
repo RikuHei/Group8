@@ -144,6 +144,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 20
-  damage: 40
+  bulletDamage: 50
   explosionTimer: 2
   rigidBody: {fileID: 5484722262096234701}

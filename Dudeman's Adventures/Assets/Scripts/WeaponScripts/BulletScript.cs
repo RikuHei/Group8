@@ -5,8 +5,8 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour
 {
     public float bulletSpeed = 20f;
-    public int damage = 40;
-    public int explosionTimer = 50;
+    public int bulletDamage = 50;
+    public int explosionTimer = 2;
     public Rigidbody2D rigidBody;
 
     // Start is called before the first frame update
@@ -21,21 +21,16 @@ public class BulletScript : MonoBehaviour
         Destroy(gameObject, explosionTimer);
     }
 
-    void OnTriggerEnter2D(Collider2D hitInfo)
+    void OnTriggerEnter2D(Collider2D collider)
     {
-        //Collision detector for destroyable blocks
-        /*Destroyable destroyable = hitInfo.GetComponent<Destroyable>();
+        //Destroy the bullet when hitting a collider
+        Destroy(gameObject);
+
+        //Collision detector for anything thats destroyable (tiles, enemies etc.)
+        DestroyableScript destroyable = collider.GetComponent<DestroyableScript>();
         if(destroyable != null)
         {
-            destroyable.TakeDamage(damage);
+            destroyable.TakeDamage(bulletDamage);
         }
-
-        //Collision detector for enemies
-        /*Enemy enemy = hitInfo.GetComponent<Enemy>();
-        if(enemy != null)
-        {
-            enemy.TakeDamage(damage);
-        }*/
-        Destroy(gameObject);
     }
 }

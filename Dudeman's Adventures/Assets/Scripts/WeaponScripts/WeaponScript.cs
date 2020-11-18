@@ -4,20 +4,28 @@ using UnityEngine;
 
 public class WeaponScript : MonoBehaviour
 {
-    public Transform firePoint;
+    //The shootpoint where the bullet is instantiated
+    public Transform shootPoint;
     public GameObject bulletPrefab;
+    public float fireRate = 10;
+    float nextTimeToFire = 0;
     
     // Update is called once per frame
     void Update()
     {
         if(Input.GetButtonDown("Fire1"))
         {
-            Shoot();
+            //Timer for fire rate
+            if(Time.time > nextTimeToFire)
+            {
+                nextTimeToFire = Time.time+4/fireRate;
+                Shoot();
+            }
         }
     }
 
     void Shoot()
     {
-       Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+       Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
     }
 }
