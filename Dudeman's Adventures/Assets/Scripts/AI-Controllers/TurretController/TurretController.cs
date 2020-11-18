@@ -9,7 +9,7 @@ public class TurretController : MonoBehaviour
     bool Detected = false;
     Vector2 Direction;
     public GameObject Gun;
-    public GameObject Bullet;
+    public GameObject AIBullet;
     public float FireRate;
     float nextTimeToFire = 0;
     public Transform ShootPoint;
@@ -63,8 +63,8 @@ public class TurretController : MonoBehaviour
 
     void shoot()
     {
-        GameObject BulletIns = Instantiate(Bullet, ShootPoint.position, Quaternion.identity);
-        BulletIns.GetComponent<Rigidbody2D>().AddForce(Direction * Force);
+        GameObject AIBulletIns = Instantiate(AIBullet, ShootPoint.position, Quaternion.identity);
+        AIBulletIns.GetComponent<Rigidbody2D>().AddForce(Direction * Force);
     }
 
     void OnDrawGizmosSelected() 
