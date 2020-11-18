@@ -1270,7 +1270,7 @@ MonoBehaviour:
   Range: 6.5
   Target: {fileID: 673634200}
   Gun: {fileID: 1255266462}
-  Bullet: {fileID: 1379895190743700749, guid: f99627dd3a0c3f24080334d86ed7b86a, type: 3}
+  AIBullet: {fileID: 0}
   FireRate: 5
   ShootPoint: {fileID: 654125709}
   Force: 100
