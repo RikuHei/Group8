@@ -19,7 +19,10 @@ public class AIPatrolScript : MonoBehaviour
     Vector3 baseScale;
 
     Rigidbody2D rb2d;
-    float moveSpeed = 5;
+
+    [SerializeField]
+    public float moveSpeed;
+
     // Start is called before the first frame update
     void Start()
     {

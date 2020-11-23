@@ -447,6 +447,15 @@ Tilemap:
       m_TileColorIndex: 1
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
+  - first: {x: 5, y: -5, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 6
+      m_TileSpriteIndex: 6
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 1
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741825
   - first: {x: 6, y: -5, z: 0}
     second:
       serializedVersion: 2
@@ -614,7 +623,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: a357491969fea274a89d63862d6cd5e9, type: 2}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 61f82cc8c417c644c874cceaf6b51917, type: 2}
-  - m_RefCount: 25
+  - m_RefCount: 26
     m_Data: {fileID: 11400000, guid: 0c7ad351e67d454449466b90e0faf061, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
@@ -629,10 +638,10 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: 8adc70c171f55594b8a8741c8968690e, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 21300000, guid: b225bfc8e80172b479fca64bb22940c7, type: 3}
-  - m_RefCount: 25
+  - m_RefCount: 26
     m_Data: {fileID: 21300000, guid: aef71c7747041554e8bb5dcbb264e546, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 29
+  - m_RefCount: 30
     m_Data:
       e00: 1
       e01: 0
@@ -653,7 +662,7 @@ Tilemap:
   m_TileColorArray:
   - m_RefCount: 0
     m_Data: {r: -1.9487588e+10, g: -1.9487588e+10, b: -1.9487588e+10, a: -1.9487588e+10}
-  - m_RefCount: 29
+  - m_RefCount: 30
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -1373,8 +1382,9 @@ GameObject:
   - component: {fileID: 1513648362}
   - component: {fileID: 1513648366}
   - component: {fileID: 1513648367}
+  - component: {fileID: 1513648368}
   m_Layer: 0
-  m_Name: NPC
+  m_Name: NPC_patrol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1399,7 +1409,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &1513648363
 SpriteRenderer:
@@ -1506,6 +1516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   castPos: {fileID: 1921669432}
   baseCastDist: 0.5
+  moveSpeed: 1
 --- !u!58 &1513648367
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1522,6 +1533,21 @@ CircleCollider2D:
   m_Offset: {x: 2.1, y: -0.87}
   serializedVersion: 2
   m_Radius: 0.2
+--- !u!114 &1513648368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513648361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e69faf9fd126dc4e8efd0a190331d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1164682730}
+  aggroRange: 10
+  aggroSpeed: 5
 --- !u!1 &1632534748
 GameObject:
   m_ObjectHideFlags: 0
