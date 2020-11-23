@@ -19,6 +19,9 @@ public class CharacterController2D : MonoBehaviour
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private Vector3 m_Velocity = Vector3.zero;
     public Animator animator;
+    public Transform shootPoint;
+
+    Vector3 localScale;
 
     [Header("Events")]
     [Space]
@@ -52,6 +55,8 @@ public class CharacterController2D : MonoBehaviour
         m_Grounded = false;
         animator.SetBool("IsJumping", true);
         m_Rigidbody2D.gravityScale = playerJumpGravity;
+
+        CheckWeaponDirection();
 
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
@@ -147,15 +152,47 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-
     private void Flip()
     {
         // Switch the way the player is labelled as facing.
         m_FacingRight = !m_FacingRight;
 
-        // Multiply the player's x local scale by -1.
+        // Multiply the player's x local scale by -1. 
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+    
+    //Switch the shoot point of the gun according to the position of the player and key inputs
+	void CheckWeaponDirection()
+	{
+        //Added a null check here to make sure that the script doesnt break scenes where there isnt a gun
+        if(shootPoint != null)
+        {
+            //While holding 'w', the shoot point is directly upwards
+            if (Input.GetKey (KeyCode.W))
+            {
+                shootPoint.rotation = Quaternion.Euler(0, 0, 90 * transform.localScale.y);
+            }
+
+            //while holding 's', the shoot point is directly downwards
+            else if(Input.GetKey (KeyCode.S))
+            {
+                shootPoint.rotation = Quaternion.Euler(0, 0, 270 * transform.localScale.y);
+            }
+            else
+            {
+                //when the character is facing right, the shoot point is pointed right
+                if(m_FacingRight)
+                {
+                    shootPoint.rotation = Quaternion.Euler(0, 0, 0);
+                }
+                //when the character is facing left, the shoot point is pretty obviously pointed to the left
+                else if(!m_FacingRight)
+                {
+                    shootPoint.rotation = Quaternion.Euler(0, 180, 0);
+                }
+            }
+        }
     }
 }
