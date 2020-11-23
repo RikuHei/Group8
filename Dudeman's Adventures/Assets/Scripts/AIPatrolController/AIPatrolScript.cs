@@ -37,12 +37,44 @@ public class AIPatrolScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb2d.velocity = new Vector2(moveSpeed, rb2d.velocity.y);
+        float vX = moveSpeed;
 
-        if(IsHittingWall())
+        if(facingDirection == LEFT)
         {
-            print("hit wall");
+            vX = -moveSpeed;
         }
+
+        rb2d.velocity = new Vector2(vX, rb2d.velocity.y);
+
+        if(IsHittingWall() || IsNearEdge())
+        {
+            if(facingDirection == LEFT)
+            {
+                ChangeFacingDirection(RIGHT);
+            }
+            else
+            {
+                ChangeFacingDirection(LEFT);
+            }
+        }
+    }
+
+    void ChangeFacingDirection(string newDirection)
+    {
+        Vector3 newScale = baseScale;
+
+        if(newDirection == LEFT)
+        {
+            newScale.x = -baseScale.x;
+        }
+        else
+        {
+            newScale.x = baseScale.x;
+        }
+
+        transform.localScale = newScale;
+
+        facingDirection = newDirection;
     }
 
     bool IsHittingWall()
@@ -63,6 +95,8 @@ public class AIPatrolScript : MonoBehaviour
         Vector3 targetPos = castPos.position;
         targetPos.x += castDist;
 
+        Debug.DrawLine(castPos.position, targetPos, Color.red);
+
         if(Physics2D.Linecast(castPos.position, targetPos, 1 << LayerMask.NameToLayer("Terrain")))
         {
             val = true;
@@ -70,6 +104,30 @@ public class AIPatrolScript : MonoBehaviour
         else
         {
             val = false;
+        }
+
+        return val;
+    }
+
+
+    bool IsNearEdge()
+    {
+        bool val = true;
+
+        float castDist = baseCastDist;
+        
+        Vector3 targetPos = castPos.position;
+        targetPos.y -= castDist;
+
+        Debug.DrawLine(castPos.position, targetPos, Color.blue);
+
+        if(Physics2D.Linecast(castPos.position, targetPos, 1 << LayerMask.NameToLayer("Terrain")))
+        {
+            val = false;
+        }
+        else
+        {
+            val = true;
         }
 
         return val;
