@@ -18,13 +18,22 @@ public class MoveToNextLevel : MonoBehaviour
     {
         if (col.gameObject.name.Equals("Player"))
         {
-            // Move to next level
-            SceneManager.LoadScene(nextSceneLoad);
-            Debug.Log(PlayerPrefs.GetInt("levelAt", nextSceneLoad));
-            // Setting Int for Index
-            if (nextSceneLoad > PlayerPrefs.GetInt("levelAt"))
+            if (SceneManager.GetActiveScene().buildIndex == 7)
             {
-                PlayerPrefs.SetInt("levelAt", nextSceneLoad);
+                Debug.Log("You Completed ALL Levels");
+
+                //Show Win Screen or Somethin.
+            }
+            else
+            {
+                //Move to next level
+                SceneManager.LoadScene(nextSceneLoad);
+
+                //Setting Int for Index
+                if (nextSceneLoad > PlayerPrefs.GetInt("levelAt"))
+                {
+                    PlayerPrefs.SetInt("levelAt", nextSceneLoad);
+                }
             }
         }
     }
