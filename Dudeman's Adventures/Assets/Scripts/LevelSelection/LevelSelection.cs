@@ -8,20 +8,20 @@ public class LevelSelection : MonoBehaviour
 {
 
     public Button[] lvlButtons;
+    public int btnVal;
 
-    public void SelectLevel()
+    public void SelectLevel(string levelName)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(levelName);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        int levelAt = PlayerPrefs.GetInt("level", 2);
-        Debug.Log(levelAt);
-        for (int i = 1; i < lvlButtons.Length; i++)
+        int levelAt = PlayerPrefs.GetInt("levelAt", 2);
+        for (int i = 0; i < lvlButtons.Length; i++)
         {
-            if (1 + 2 > levelAt)
+            if (i + 2 > levelAt)
                 lvlButtons[i].interactable = false;
         }
     }
