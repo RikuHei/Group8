@@ -789,8 +789,8 @@ GameObject:
   - component: {fileID: 1138759615}
   - component: {fileID: 1138759619}
   - component: {fileID: 1138759618}
-  - component: {fileID: 1138759616}
   - component: {fileID: 1138759617}
+  - component: {fileID: 1138759620}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
@@ -812,19 +812,6 @@ Transform:
   m_Father: {fileID: 888485779}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1138759616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1138759614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3165a56a951916e4fa2a3fe74dafb92f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 150
 --- !u!19719996 &1138759617
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -885,7 +872,7 @@ TilemapRenderer:
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
-  m_Mode: 0
+  m_Mode: 1
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
 --- !u!1839735485 &1138759619
@@ -998,6 +985,20 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1138759620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138759614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3165a56a951916e4fa2a3fe74dafb92f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  animator: {fileID: 0}
 --- !u!1 &1242383660
 GameObject:
   m_ObjectHideFlags: 0
@@ -2165,6 +2166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
+  animator: {fileID: 0}
 --- !u!114 &1693785218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2491,6 +2493,7 @@ GameObject:
   - component: {fileID: 1951981761}
   - component: {fileID: 1951981760}
   - component: {fileID: 1951981759}
+  - component: {fileID: 1951981763}
   m_Layer: 0
   m_Name: DestroyableTile
   m_TagString: Untagged
@@ -2511,6 +2514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  animator: {fileID: 1951981763}
 --- !u!61 &1951981760
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2601,6 +2605,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1951981763
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951981758}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 468f64fb89585334abd0e9db49870f6f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1970244659
 GameObject:
   m_ObjectHideFlags: 0
