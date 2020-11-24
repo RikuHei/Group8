@@ -10,13 +10,17 @@ public class HPPowerUp : MonoBehaviour
     //Boolean to create power-ups that give maximum HP
     public bool fullHP;
 
+    private bool picked = false;
+
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.tag == "Player")
+        if(collider.tag == "Player"  && !picked)
         {
             //Getting the script that handles the HP
             GameObject player = collider.gameObject;
             RestartOnPlayerDeath playerScript = player.GetComponent<RestartOnPlayerDeath>();
+
+            picked = true;
 
             if(fullHP == true)
             {
