@@ -55,4 +55,14 @@ public class AIAggroScript : MonoBehaviour
     {
         rb2d.velocity = new Vector2(0, 0);
     }
+
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if(collision.transform.name == "Player")
+        {
+             GameObject.Find("Player").GetComponent<RestartOnPlayerDeath>().TakeDamage(1);
+        }
+
+    }
+
 }
