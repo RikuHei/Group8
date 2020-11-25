@@ -4,36 +4,42 @@ using UnityEngine;
 
 public class PowerUpController : MonoBehaviour
 {
-    private bool jumpBoost;
+    private bool jumpBoostEnabled;
     private float normalForce;
     private float jumpBoostForce;
     private float jumpBoostTime;
 
-    private bool damageImmunity;
-    private float damageImmunityTime;
+    private bool damageImmunityCheck;
+    private float immunityTime;
 
-    private CharacterController2D playerController;
+    private CharacterController2D characterController;
+    private RestartOnPlayerDeath damageController;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerController = FindObjectOfType<CharacterController2D>();
-        normalForce = playerController.m_JumpForce;
+        characterController = FindObjectOfType<CharacterController2D>();
+        damageController = FindObjectOfType<RestartOnPlayerDeath>();
+        normalForce = characterController.m_JumpForce;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(jumpBoost)
+        if(jumpBoostEnabled)
         {
             jumpBoostTime -= Time.deltaTime;
 
-
             if(jumpBoostTime <= 0)
             {
-                playerController.m_JumpForce = normalForce;
-                jumpBoost = false;
+                characterController.m_JumpForce = normalForce;
+                jumpBoostEnabled = false;
             }
+        }
+        if(damageImmunityCheck)
+        {
+            damageController.EnableDamageImmunity(immunityTime);
+            damageImmunityCheck = false;
         }
     }
 
@@ -41,16 +47,16 @@ public class PowerUpController : MonoBehaviour
     {
         if(name == "jump")
         {
-            jumpBoost = true;
+            jumpBoostEnabled = true;
             jumpBoostForce = force;
             jumpBoostTime = time;
             
-            playerController.m_JumpForce += jumpBoostForce;
+            characterController.m_JumpForce += jumpBoostForce;
         }
         if(name == "immunity")
         {
-            damageImmunity = true;
-            damageImmunityTime = time;
+            damageImmunityCheck = true;
+            immunityTime = time;
         }
     }
 }
