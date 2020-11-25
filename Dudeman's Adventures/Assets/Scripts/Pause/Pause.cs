@@ -6,31 +6,34 @@ using UnityEngine.SceneManagement;
 public class Pause : MonoBehaviour
 {
 
-    public bool isPaused;
+    public static bool isPaused;
     public GameObject PauseMenu;
 
     // Update is called once per frame
     void Update()
     {
-        if (isPaused)
-        {
-            PauseMenu.SetActive(true);
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            PauseMenu.SetActive(false);
-            Time.timeScale = 1f;
-        }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            isPaused = !isPaused;
+
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            if(isPaused){
+                ResumeGame();
+            }else{
+                PauseGame();
+            }
         }
     }
 
-    public void Resume()
+    public void PauseGame()
     {
-        isPaused = !isPaused;
+        PauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+        isPaused = true;
+    }
+
+    public void ResumeGame()
+    {
+        PauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        isPaused = false;
     }
 
     public void LevelSelection()
