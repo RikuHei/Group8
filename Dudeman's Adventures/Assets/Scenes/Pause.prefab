@@ -507,7 +507,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622bb61023f20584b86393d342e3afbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPaused: 0
   PauseMenu: {fileID: 4952282477074519677}
 --- !u!1 &4952282477620137105
 GameObject:
@@ -668,7 +667,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4952282477171516183}
-        m_MethodName: Resume
+        m_MethodName: ResumeGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
