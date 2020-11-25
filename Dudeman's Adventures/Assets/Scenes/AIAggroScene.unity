@@ -730,7 +730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4f385dfd2b17a940ad69e701b14c593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 200
   currentHealth: 0
   healthBar: {fileID: 492306721}
   animator: {fileID: 730145714}
@@ -2351,29 +2351,11 @@ Tilemap:
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
-  - first: {x: 4, y: -2, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 9
-      m_TileSpriteIndex: 9
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
   - first: {x: 16, y: -2, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 7
       m_TileSpriteIndex: 8
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
-  - first: {x: 4, y: -1, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 9
-      m_TileSpriteIndex: 9
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -2407,7 +2389,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 61f82cc8c417c644c874cceaf6b51917, type: 2}
   - m_RefCount: 27
     m_Data: {fileID: 11400000, guid: 0c7ad351e67d454449466b90e0faf061, type: 2}
-  - m_RefCount: 8
+  - m_RefCount: 6
     m_Data: {fileID: 11400000, guid: a357491969fea274a89d63862d6cd5e9, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 27
@@ -2428,10 +2410,10 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: 0dec2c7433938a348a601b4c6a3eb002, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: b225bfc8e80172b479fca64bb22940c7, type: 3}
-  - m_RefCount: 8
+  - m_RefCount: 6
     m_Data: {fileID: 21300000, guid: 8adc70c171f55594b8a8741c8968690e, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 172
+  - m_RefCount: 170
     m_Data:
       e00: 1
       e01: 0
@@ -2450,7 +2432,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 172
+  - m_RefCount: 170
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   - m_RefCount: 0
     m_Data: {r: 2.0535e-41, g: 2.0535e-41, b: 2.0535e-41, a: 2.0535e-41}
@@ -2605,7 +2587,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 1000000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -2672,8 +2654,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1513648361}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.57, y: -1.08, z: 0}
-  m_LocalScale: {x: 0.53, y: 0.85, z: 1}
+  m_LocalPosition: {x: 10.8, y: -1.08, z: 0}
+  m_LocalScale: {x: -0.5, y: 0.8, z: 1}
   m_Children:
   - {fileID: 1921669432}
   m_Father: {fileID: 0}
@@ -2687,7 +2669,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1513648361}
   m_Enabled: 1
-  m_Density: 1
+  m_Density: 12.14
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
@@ -2703,7 +2685,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.2, y: 2.04}
+  m_Size: {x: 4.82, y: 2.05}
   m_EdgeRadius: 0
 --- !u!114 &1513648366
 MonoBehaviour:
@@ -2718,8 +2700,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 730145721}
-  aggroRange: 4
-  moveSpeed: 3
+  aggroRange: 5
+  moveSpeed: 4
+  castPoint: {fileID: 1921669432}
 --- !u!58 &1513648367
 CircleCollider2D:
   m_ObjectHideFlags: 0
