@@ -135,4 +135,14 @@ public class AIPatrolScript : MonoBehaviour
 
         return val;
     }
+
+    
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if(collision.transform.name == "Player")
+        {
+             GameObject.Find("Player").GetComponent<RestartOnPlayerDeath>().TakeDamage(1);
+        }
+
+    }
 }
