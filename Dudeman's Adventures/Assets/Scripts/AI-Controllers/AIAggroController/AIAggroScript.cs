@@ -30,7 +30,7 @@ public class AIAggroScript : MonoBehaviour
     {
         baseScale = transform.localScale;
         rb2d = GetComponent<Rigidbody2D>();
-        rb2d.gravityScale = 10f;
+        rb2d.gravityScale = 10f;     
     }
 
     // Update is called once per frame
