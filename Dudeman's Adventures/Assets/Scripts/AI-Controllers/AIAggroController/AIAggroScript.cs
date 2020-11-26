@@ -19,6 +19,8 @@ public class AIAggroScript : MonoBehaviour
     [SerializeField]
     bool isFacingLeft = true; // checkbox for the dev when placing an AI if it is facing Left or not !!! VERY IMPORTANT !!!
 
+    Vector3 baseScale;
+
     Rigidbody2D rb2d;
 
     private bool isAggro = false;
@@ -26,13 +28,13 @@ public class AIAggroScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        baseScale = transform.localScale;
         rb2d = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
         if(DetectPlayer(aggroRange))
         {
             isAggro = true;
@@ -107,20 +109,23 @@ public class AIAggroScript : MonoBehaviour
 
     void ChasePlayer()
     {
+        Vector3 newScale = baseScale;
+        
         if(transform.position.x < player.position.x)
         {
             rb2d.velocity = new Vector2(moveSpeed, 0);
-            //these values downhere need to be changed based on the size of the sprite.
-            transform.localScale = new Vector2(0.5f, 0.8f);
+            newScale.x = -baseScale.x;
             isFacingLeft = false;
+            transform.localScale = newScale;
         }
         else
         {
             rb2d.velocity = new Vector2(-moveSpeed, 0);
-            //these values downhere need to be changed based on the size of the sprite.
-            transform.localScale = new Vector2(-0.5f, 0.8f);
+            newScale.x = baseScale.x;
             isFacingLeft = true;
+            transform.localScale = newScale;
         }
+        
     }
 
     void StopChasingPlayer()
@@ -128,6 +133,29 @@ public class AIAggroScript : MonoBehaviour
         isAggro = false;
         isSearching = false;
         rb2d.velocity = new Vector2(0, 0);
+    }
+
+    bool IsNearEdge()
+    {
+        bool val = true;
+
+        float castDist = aggroRange;
+        
+        Vector3 targetPos = castPoint.position;
+        targetPos.y -= castDist;
+
+        Debug.DrawLine(castPoint.position, targetPos, Color.green);
+
+        if(Physics2D.Linecast(castPoint.position, targetPos, 1 << LayerMask.NameToLayer("Terrain")))
+        {
+            val = false;
+        }
+        else
+        {
+            val = true;
+        }
+
+        return val;
     }
 
     void OnCollisionStay2D(Collision2D collision)
