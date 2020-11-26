@@ -77,6 +77,9 @@ public class AIAggroScript : MonoBehaviour
     {
         bool val = false;
         float castDist = distance;
+        int maskPlayer = 1 << LayerMask.NameToLayer("Player");
+        int maskTerrain = 1 << LayerMask.NameToLayer("Terrain");
+        int combinedMask = maskPlayer | maskTerrain;
 
         if(isFacingLeft)
         {
@@ -85,7 +88,7 @@ public class AIAggroScript : MonoBehaviour
 
         Vector2 endPos = castPoint.position + Vector3.right * castDist;
 
-        RaycastHit2D hit = Physics2D.Linecast(castPoint.position, endPos, 1 << LayerMask.NameToLayer("Player"));
+        RaycastHit2D hit = Physics2D.Linecast(castPoint.position, endPos, combinedMask);
 
         if(hit.collider != null)
         {
