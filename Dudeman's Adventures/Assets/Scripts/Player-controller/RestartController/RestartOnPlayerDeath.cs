@@ -8,11 +8,17 @@ public class RestartOnPlayerDeath : MonoBehaviour
 
     public int maxHealth = 5;
     public int currentHealth;
+
     public float defaultImmunityTime;
     public bool damageImmunity;
-    public bool timerIsRunning;
+    private bool timerIsRunning;
+    private bool immunityFromPowerUp;
+    private Coroutine immunityRoutine;
+
     public HealthBar healthBar;
     public Animator animator;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +51,10 @@ public class RestartOnPlayerDeath : MonoBehaviour
         {
             currentHealth -= damage;
             healthBar.SetHealth(currentHealth);
-            EnableDamageImmunity(defaultImmunityTime);
+
+            immunityFromPowerUp = false;
+            EnableDamageImmunity(defaultImmunityTime, immunityFromPowerUp);
+
             if (currentHealth < 1)
             {
                 GameObject.Find("Player").GetComponent<MovementController>().runSpeed = 0;
@@ -54,18 +63,22 @@ public class RestartOnPlayerDeath : MonoBehaviour
                 Invoke("RestartSceneOnDeath", 3f);
             }
         }
-        if(damageImmunity)
-        {
-            Debug.Log("Immune");
-        }
     }
 
-    public void EnableDamageImmunity(float time)
+    public void EnableDamageImmunity(float time, bool powerUp)
     {
         if(!timerIsRunning)
         {
             damageImmunity = true;
-            StartCoroutine(ImmunityTimer(time));
+            immunityRoutine = StartCoroutine(ImmunityTimer(time));
+        }
+        else if (timerIsRunning && powerUp)
+        {
+            StopCoroutine(immunityRoutine);
+            damageImmunity = false;
+            timerIsRunning = false;
+            damageImmunity = true;
+            immunityRoutine = StartCoroutine(ImmunityTimer(time));
         }
     }
 

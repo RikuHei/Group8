@@ -38,7 +38,7 @@ public class PowerUpController : MonoBehaviour
         }
         if(damageImmunityCheck)
         {
-            damageController.EnableDamageImmunity(immunityTime);
+            damageController.EnableDamageImmunity(immunityTime, damageImmunityCheck);
             damageImmunityCheck = false;
         }
     }
