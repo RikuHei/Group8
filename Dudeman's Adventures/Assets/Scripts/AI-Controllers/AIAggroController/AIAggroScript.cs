@@ -16,9 +16,11 @@ public class AIAggroScript : MonoBehaviour
     [SerializeField]
     Transform castPoint;
 
+    [SerializeField]
+    bool isFacingLeft = true; // checkbox for the dev when placing an AI if it is facing Left or not !!! VERY IMPORTANT !!!
+
     Rigidbody2D rb2d;
 
-    bool isFacingLeft;
     private bool isAggro = false;
     private bool isSearching = false;
     // Start is called before the first frame update
@@ -91,6 +93,12 @@ public class AIAggroScript : MonoBehaviour
                 val = false;
             }
 
+            Debug.DrawLine(castPoint.position, endPos, Color.blue);
+        }
+        
+        else
+        {
+            Debug.DrawLine(castPoint.position, endPos, Color.red);
         }
 
         return val;
