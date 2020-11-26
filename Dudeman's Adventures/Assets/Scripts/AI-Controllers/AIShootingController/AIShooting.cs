@@ -12,6 +12,7 @@ public class AIShooting : MonoBehaviour
     public Transform player;
     public GameObject AIBulletController;
     public Transform ShootPoint;
+    public Transform Muzzle;
     [SerializeField]
     float aggroRange;
     [SerializeField] // checkbox for the dev when placing an AI if it is facing Left or not !!! VERY IMPORTANT !!!
@@ -112,7 +113,7 @@ public class AIShooting : MonoBehaviour
 
     void Shoot()
     {
-        Instantiate(AIBulletController, transform.position, Quaternion.identity);
+        Instantiate(AIBulletController, Muzzle.position, Quaternion.identity);
         timeBtwShots = startTimeBtwShots;
     }
 

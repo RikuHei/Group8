@@ -13,7 +13,6 @@ public class AIBulletController : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
         target = new Vector2(player.position.x, player.position.y);
     }
 
@@ -28,15 +27,15 @@ public class AIBulletController : MonoBehaviour
         }
     }
 
-
-
-    void DestroyBullet()
-    {
-        Destroy(this.gameObject);
-    }
     void OnCollisionEnter2D(Collision2D col)
     {
         Destroy(this.gameObject);
         GameObject.Find("Player").GetComponent<RestartOnPlayerDeath>().TakeDamage(5);
     }
+
+    void DestroyBullet()
+    {
+        Destroy(this.gameObject);
+    }
+
 }
