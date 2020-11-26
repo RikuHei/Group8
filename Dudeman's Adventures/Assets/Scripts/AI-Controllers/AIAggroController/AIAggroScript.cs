@@ -140,7 +140,7 @@ public class AIAggroScript : MonoBehaviour
         isSearching = false;
         rb2d.velocity = new Vector2(0, 0);
     }
-
+/*
     bool IsNearEdge()
     {
         bool val = true;
@@ -163,7 +163,7 @@ public class AIAggroScript : MonoBehaviour
 
         return val;
     }
-
+*/
     //CollisionStay is used instead of Enter because of the zombie like nature of the mobs.
     void OnCollisionStay2D(Collision2D collision)
     {

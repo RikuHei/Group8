@@ -29,22 +29,14 @@ public class AIBulletController : MonoBehaviour
     }
 
 
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        Destroy(this.gameObject);
-    }
 
-    void OnTriggerEnter2D(Collider2D other) 
-    {
-        if (other.CompareTag("Player"))
-        {
-             DestroyBullet();
-             GameObject.Find("Player").GetComponent<RestartOnPlayerDeath>().TakeDamage(5);
-        }
-       
-    }
     void DestroyBullet()
     {
         Destroy(this.gameObject);
+    }
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        Destroy(this.gameObject);
+        GameObject.Find("Player").GetComponent<RestartOnPlayerDeath>().TakeDamage(5);
     }
 }

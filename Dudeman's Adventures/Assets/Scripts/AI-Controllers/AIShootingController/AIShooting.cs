@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AIShooting : MonoBehaviour
 {
-    public float speed;
-    
+    [SerializeField]
+    float moveSpeed;
     private float timeBtwShots;
     public float startTimeBtwShots;
 
@@ -14,8 +14,12 @@ public class AIShooting : MonoBehaviour
     public Transform ShootPoint;
     [SerializeField]
     float aggroRange;
-    [SerializeField]
+    [SerializeField] // checkbox for the dev when placing an AI if it is facing Left or not !!! VERY IMPORTANT !!!
     bool isFacingLeft = true;
+
+    Vector3 baseScale;
+
+    Rigidbody2D rb2d;
 
     private bool isAggro = false;
     private bool isSearching = false;
@@ -25,6 +29,9 @@ public class AIShooting : MonoBehaviour
     {
          player = GameObject.FindGameObjectWithTag("Player").transform;
          timeBtwShots = startTimeBtwShots;
+         baseScale = transform.localScale;
+         rb2d = GetComponent<Rigidbody2D>();
+         rb2d.gravityScale = 10f; 
     }
 
     // Update is called once per frame
@@ -50,6 +57,7 @@ public class AIShooting : MonoBehaviour
 
         if (isAggro == true)
         {
+            ChasePlayer();
             if(timeBtwShots <= 0)
             {
                 Shoot();
@@ -108,10 +116,32 @@ public class AIShooting : MonoBehaviour
         timeBtwShots = startTimeBtwShots;
     }
 
+    void ChasePlayer()
+    {
+        Vector3 newScale = baseScale;
+        
+        if(transform.position.x < player.position.x)
+        {
+            rb2d.velocity = new Vector2(moveSpeed, 0);
+            newScale.x = -baseScale.x;
+            isFacingLeft = false;
+            transform.localScale = newScale;
+        }
+        else
+        {
+            rb2d.velocity = new Vector2(-moveSpeed, 0);
+            newScale.x = baseScale.x;
+            isFacingLeft = true;
+            transform.localScale = newScale;
+        }
+        
+    }
+
         void StopChasingPlayer()
     {
         isAggro = false;
         isSearching = false;
+        rb2d.velocity = new Vector2(0, 0);
     }
     
 }
