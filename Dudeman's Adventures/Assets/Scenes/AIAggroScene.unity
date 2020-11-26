@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 329391682}
   - component: {fileID: 329391681}
   - component: {fileID: 329391680}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: NPC_patrol (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,7 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3165a56a951916e4fa2a3fe74dafb92f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 250
 --- !u!58 &329391682
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -546,7 +546,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 415440852}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EdgeCheck
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -2789,7 +2789,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1366892143}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CastPos
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -2908,7 +2908,7 @@ GameObject:
   - component: {fileID: 1513648367}
   - component: {fileID: 1513648369}
   - component: {fileID: 1513648366}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: NPC_patrol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3073,7 +3073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3165a56a951916e4fa2a3fe74dafb92f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 250
 --- !u!1 &1627222103
 GameObject:
   m_ObjectHideFlags: 0
@@ -3300,7 +3300,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1906904744}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EdgeCheck
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -3330,7 +3330,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1921669432}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CastPos
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
