@@ -23,14 +23,17 @@ public class BulletScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        //Destroy the bullet when hitting a collider
-        Destroy(gameObject);
-
-        //Collision detector for anything thats destroyable (tiles, enemies etc.)
-        DestroyableScript destroyable = collider.GetComponent<DestroyableScript>();
-        if(destroyable != null)
+        if(collider.gameObject.tag != "Power-up")
         {
-            destroyable.TakeDamage(bulletDamage);
+            //Destroy the bullet when hitting a collider
+            Destroy(gameObject);
+
+            //Collision detector for anything thats destroyable (tiles, enemies etc.)
+            DestroyableScript destroyable = collider.GetComponent<DestroyableScript>();
+            if(destroyable != null)
+            {
+                destroyable.TakeDamage(bulletDamage);
+            }
         }
     }
 }
