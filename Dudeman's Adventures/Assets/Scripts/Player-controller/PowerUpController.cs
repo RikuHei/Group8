@@ -5,22 +5,30 @@ using UnityEngine;
 public class PowerUpController : MonoBehaviour
 {
     private bool jumpBoostEnabled;
-    private float normalForce;
+    private float normalJumpForce;
     private float jumpBoostForce;
     private float jumpBoostTime;
 
     private bool damageImmunityCheck;
     private float immunityTime;
 
+    private bool fireRateBoostEnabled;
+    private float fireRateBoost;
+    private float fireRateBoostTime;
+    private float normalFireRate;
+
     private CharacterController2D characterController;
-    private RestartOnPlayerDeath damageController;
+    private RestartOnPlayerDeath playerDamageController;
+    private WeaponScript weaponController;
 
     // Start is called before the first frame update
     void Start()
     {
         characterController = FindObjectOfType<CharacterController2D>();
-        damageController = FindObjectOfType<RestartOnPlayerDeath>();
-        normalForce = characterController.m_JumpForce;
+        playerDamageController = FindObjectOfType<RestartOnPlayerDeath>();
+        weaponController = FindObjectOfType<WeaponScript>();
+        normalJumpForce = characterController.m_JumpForce;
+        normalFireRate = weaponController.fireRate;
     }
 
     // Update is called once per frame
@@ -32,14 +40,26 @@ public class PowerUpController : MonoBehaviour
 
             if(jumpBoostTime <= 0)
             {
-                characterController.m_JumpForce = normalForce;
+                characterController.m_JumpForce = normalJumpForce;
                 jumpBoostEnabled = false;
             }
         }
+
         if(damageImmunityCheck)
         {
-            damageController.EnableDamageImmunity(immunityTime, damageImmunityCheck);
+            playerDamageController.EnableDamageImmunity(immunityTime, damageImmunityCheck);
             damageImmunityCheck = false;
+        }
+
+        if(fireRateBoostEnabled)
+        {
+            fireRateBoostTime -= Time.deltaTime;
+
+            if(fireRateBoostTime <= 0)
+            {
+                weaponController.fireRate = normalFireRate;
+                fireRateBoostEnabled = false;
+            }
         }
     }
 
@@ -49,14 +69,13 @@ public class PowerUpController : MonoBehaviour
         {
             if(jumpBoostEnabled)
             {
-                characterController.m_JumpForce = normalForce;
+                characterController.m_JumpForce = normalJumpForce;
 
                 jumpBoostEnabled = true;
                 jumpBoostForce = force;
                 jumpBoostTime = time;
                 
                 characterController.m_JumpForce += jumpBoostForce;
-                
             }
             else
             {
@@ -66,12 +85,38 @@ public class PowerUpController : MonoBehaviour
                 
                 characterController.m_JumpForce += jumpBoostForce;
             }
-
         }
+
         if(name == "immunity")
         {
             damageImmunityCheck = true;
             immunityTime = time;
+        }
+
+        if(name == "fireRate")
+        {
+            fireRateBoostEnabled = true;
+            fireRateBoost = force;
+            fireRateBoostTime = time;
+
+            if(fireRateBoostEnabled)
+            {
+                weaponController.fireRate = normalFireRate;
+
+                fireRateBoostEnabled = true;
+                fireRateBoost = force;
+                fireRateBoostTime = time;
+                
+                weaponController.fireRate += fireRateBoost;
+            }
+            else
+            {
+                fireRateBoostEnabled = true;
+                fireRateBoost = force;
+                fireRateBoostTime = time;
+                
+                weaponController.fireRate += fireRateBoost;
+            }
         }
     }
 }
