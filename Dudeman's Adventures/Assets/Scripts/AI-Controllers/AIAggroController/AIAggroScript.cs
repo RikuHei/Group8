@@ -47,6 +47,8 @@ public class AIAggroScript : MonoBehaviour
                 if(isSearching == false)
                 {
                     isSearching = true;
+                    //Player will be chased for 2 seconds and after that the AI stops. 
+                    //Might wanna do a coroutine for this in the future.
                     Invoke("StopChasingPlayer", 2);
                 }
             }
@@ -159,6 +161,7 @@ public class AIAggroScript : MonoBehaviour
         return val;
     }
 
+    //CollisionStay is used instead of Enter because of the zombie like nature of the mobs.
     void OnCollisionStay2D(Collision2D collision)
     {
         if(collision.transform.name == "Player")
