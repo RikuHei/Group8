@@ -47,11 +47,26 @@ public class PowerUpController : MonoBehaviour
     {
         if(name == "jump")
         {
-            jumpBoostEnabled = true;
-            jumpBoostForce = force;
-            jumpBoostTime = time;
-            
-            characterController.m_JumpForce += jumpBoostForce;
+            if(jumpBoostEnabled)
+            {
+                characterController.m_JumpForce = normalForce;
+
+                jumpBoostEnabled = true;
+                jumpBoostForce = force;
+                jumpBoostTime = time;
+                
+                characterController.m_JumpForce += jumpBoostForce;
+                
+            }
+            else
+            {
+                jumpBoostEnabled = true;
+                jumpBoostForce = force;
+                jumpBoostTime = time;
+                
+                characterController.m_JumpForce += jumpBoostForce;
+            }
+
         }
         if(name == "immunity")
         {

@@ -24,7 +24,7 @@ public class JumpPowerUp : MonoBehaviour
     {
         if(collider.name == "Player" && !picked)
         {
-            gameObject.SetActive(false);
+            Destroy(gameObject);
 
             picked = true;
 
