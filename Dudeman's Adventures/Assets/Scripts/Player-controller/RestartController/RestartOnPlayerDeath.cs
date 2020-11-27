@@ -10,10 +10,13 @@ public class RestartOnPlayerDeath : MonoBehaviour
     public int currentHealth;
 
     public float defaultImmunityTime;
+    public float immunityCooldownTime;
     public bool damageImmunity;
-    private bool timerIsRunning;
+    private bool immunityTimerIsRunning;
     private bool immunityFromPowerUp;
+    private bool immunityOnCooldown;
     private Coroutine immunityRoutine;
+    private Coroutine cooldownRoutine;
 
     public HealthBar healthBar;
     public Animator animator;
@@ -47,7 +50,7 @@ public class RestartOnPlayerDeath : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if(!damageImmunity)
+        if(!damageImmunity && !immunityOnCooldown)
         {
             currentHealth -= damage;
             healthBar.SetHealth(currentHealth);
@@ -67,16 +70,22 @@ public class RestartOnPlayerDeath : MonoBehaviour
 
     public void EnableDamageImmunity(float time, bool powerUp)
     {
-        if(!timerIsRunning)
+        if(!immunityTimerIsRunning)
         {
             damageImmunity = true;
             immunityRoutine = StartCoroutine(ImmunityTimer(time));
         }
-        else if (timerIsRunning && powerUp)
+        else if (immunityTimerIsRunning && powerUp)
         {
             StopCoroutine(immunityRoutine);
             damageImmunity = false;
-            timerIsRunning = false;
+            immunityTimerIsRunning = false;
+            damageImmunity = true;
+            immunityRoutine = StartCoroutine(ImmunityTimer(time));
+        }
+        else if (immunityOnCooldown && powerUp)
+        {
+            StopCoroutine(cooldownRoutine);
             damageImmunity = true;
             immunityRoutine = StartCoroutine(ImmunityTimer(time));
         }
@@ -84,10 +93,18 @@ public class RestartOnPlayerDeath : MonoBehaviour
 
     public IEnumerator ImmunityTimer(float time)
     {
-        timerIsRunning = true;
+        immunityTimerIsRunning = true;
         yield return new WaitForSeconds(time);
         damageImmunity = false;
-        timerIsRunning = false;
+        immunityTimerIsRunning = false;
+        cooldownRoutine = StartCoroutine(CooldownTimer(immunityCooldownTime));
+    }
+
+    public IEnumerator CooldownTimer(float time)
+    {
+        immunityOnCooldown = true;
+        yield return new WaitForSeconds(time);
+        immunityOnCooldown = false;
     }
 }
 

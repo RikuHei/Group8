@@ -1115,6 +1115,7 @@ MonoBehaviour:
   maxHealth: 50
   currentHealth: 0
   defaultImmunityTime: 1
+  immunityCooldownTime: 3
   damageImmunity: 0
   healthBar: {fileID: 492306721}
   animator: {fileID: 730145714}
