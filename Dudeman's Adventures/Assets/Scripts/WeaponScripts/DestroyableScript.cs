@@ -7,12 +7,14 @@ public class DestroyableScript : MonoBehaviour
     public int health = 100;
 
     public Animator animator;
+    private bool hit;
 
     void Start()
     {  
         animator = GetComponent<Animator>();
 
-        InvokeRepeating("ResetHitTrigger", 1.0f, 1.0f);
+        //Calls to reset hit animation (every 0.5 sec) value to false. 
+        InvokeRepeating("ResetHitTrigger", 0.5f, 0.5f);
 
         if(animator != null)
         {
@@ -24,8 +26,7 @@ public class DestroyableScript : MonoBehaviour
     public void TakeDamage (int damage)
     {
         health -= damage;
-        animator.SetTrigger("isHit");
-        animator.ResetTrigger("isHit");
+        animator.SetBool("hit", true);
 
         if(animator != null)
         {  
@@ -54,7 +55,7 @@ public class DestroyableScript : MonoBehaviour
 
     void ResetHitTrigger()
     {
-        animator.ResetTrigger("isHit");
+        animator.SetBool("hit", false);
     }
 
 }
