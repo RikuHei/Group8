@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Teleport
   - Moveable
+  - Power-up
   layers:
   - Default
   - TransparentFX
