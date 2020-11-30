@@ -23,6 +23,8 @@ public class AIAggroScript : MonoBehaviour
 
     Rigidbody2D rb2d;
 
+    public Animator animator;
+
     private bool isAggro = false;
     private bool isSearching = false;
     // Start is called before the first frame update
@@ -30,7 +32,8 @@ public class AIAggroScript : MonoBehaviour
     {
         baseScale = transform.localScale;
         rb2d = GetComponent<Rigidbody2D>();
-        rb2d.gravityScale = 10f;     
+        rb2d.gravityScale = 10f;   
+        animator = GetComponent<Animator>();  
     }
 
     // Update is called once per frame
@@ -113,6 +116,7 @@ public class AIAggroScript : MonoBehaviour
     void ChasePlayer()
     {
         Vector3 newScale = baseScale;
+        animator.SetBool("isAggro", true);
         
         if(transform.position.x < player.position.x)
         {
@@ -133,6 +137,7 @@ public class AIAggroScript : MonoBehaviour
 
     void StopChasingPlayer()
     {
+        animator.SetBool("isAggro", false);
         isAggro = false;
         isSearching = false;
         rb2d.velocity = new Vector2(0, 0);
@@ -170,6 +175,7 @@ public class AIAggroScript : MonoBehaviour
         }
 
     }
+    
     
 
 }

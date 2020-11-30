@@ -9,7 +9,11 @@ public class DestroyableScript : MonoBehaviour
     public Animator animator;
 
     void Start()
-    {        
+    {  
+        animator = GetComponent<Animator>();
+
+        InvokeRepeating("ResetHitTrigger", 1.0f, 1.0f);
+
         if(animator != null)
         {
             //Setting the health as an integer in the animator
@@ -20,9 +24,11 @@ public class DestroyableScript : MonoBehaviour
     public void TakeDamage (int damage)
     {
         health -= damage;
+        animator.SetTrigger("isHit");
+        animator.ResetTrigger("isHit");
 
         if(animator != null)
-        {
+        {  
             //Setting the HP integer accordingly
             animator.SetInteger("HP", health);
         }
@@ -38,11 +44,17 @@ public class DestroyableScript : MonoBehaviour
         if(animator != null)
         {
             //Destroying the gameobject after a short pause to play the animation, gotta find a better way
-            Destroy(gameObject, 1f);
+            Destroy(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
     }
+
+    void ResetHitTrigger()
+    {
+        animator.ResetTrigger("isHit");
+    }
+
 }
