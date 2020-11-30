@@ -9,7 +9,17 @@ public class WeaponScript : MonoBehaviour
     public GameObject bulletPrefab;
     public float fireRate = 10;
     float nextTimeToFire = 0;
+
+    public AudioClip[] shoot;
+    public AudioSource audioSource;
+    public AudioListener audioListener;
+    private AudioClip shootClip;
     
+    void Start()
+    {
+        audioListener = GetComponent<AudioListener>();
+        audioSource = gameObject.GetComponent<AudioSource>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -27,5 +37,14 @@ public class WeaponScript : MonoBehaviour
     void Shoot()
     {
        Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
+       PlayRandom();
+    }
+
+    void PlayRandom()
+    {
+        int index = Random.Range(0, shoot.Length);
+        shootClip = shoot[index];
+        audioSource.clip = shootClip;
+        audioSource.Play();
     }
 }
