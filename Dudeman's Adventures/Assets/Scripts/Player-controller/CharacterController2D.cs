@@ -37,10 +37,17 @@ public class CharacterController2D : MonoBehaviour
     private int defaultPlayerGravity = 1;
     private int playerJumpGravity = 15;
 
+    public AudioClip[] jump;
+    public AudioSource audioSource;
+    public AudioListener audioListener;
+    private AudioClip jumpClip;
+
     private void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        audioListener = GetComponent<AudioListener>();
+        audioSource = gameObject.GetComponent<AudioSource>();
 
         if (OnLandEvent == null)
             OnLandEvent = new UnityEvent();
@@ -149,6 +156,8 @@ public class CharacterController2D : MonoBehaviour
             m_Rigidbody2D.gravityScale = playerJumpGravity;
 
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce), ForceMode2D.Impulse);
+            
+            PlayRandomJump();
         }
     }
 
@@ -194,5 +203,14 @@ public class CharacterController2D : MonoBehaviour
                 }
             }
         }
+    }
+
+    //function to play random jump sound
+    void PlayRandomJump()
+    {
+        int index = Random.Range(0, jump.Length);
+        jumpClip = jump[index];
+        audioSource.clip = jumpClip;
+        audioSource.Play();
     }
 }
