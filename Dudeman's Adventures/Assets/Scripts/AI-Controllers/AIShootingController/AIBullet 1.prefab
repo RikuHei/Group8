@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9186145915863063002}
   - component: {fileID: 6365214086092931509}
   - component: {fileID: 9026799274217750372}
+  - component: {fileID: 1466538682195318130}
   m_Layer: 10
   m_Name: AIBullet 1
   m_TagString: Untagged
@@ -134,3 +135,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1466538682195318130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379895190743700749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3165a56a951916e4fa2a3fe74dafb92f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  animator: {fileID: 0}
