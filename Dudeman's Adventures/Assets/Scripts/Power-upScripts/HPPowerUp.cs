@@ -31,23 +31,16 @@ public class HPPowerUp : MonoBehaviour
                 //Checking if the health goes over max health when the power-up is picked up
                 if(playerScript.maxHealth < (playerScript.currentHealth + HP_amount))
                 {
-                    Debug.Log("OVER LIMIT");
                     playerScript.currentHealth = playerScript.maxHealth;
                 }
                 else
                 {
-                    Debug.Log("UNDER");
                     playerScript.currentHealth += HP_amount;
                 }
             }
-
             playerScript.healthBar.SetHealth(playerScript.currentHealth);
 
             Destroy(gameObject);
-
-            Debug.Log(playerScript.maxHealth);
-            Debug.Log(playerScript.currentHealth);
-
         }
     }
 }
