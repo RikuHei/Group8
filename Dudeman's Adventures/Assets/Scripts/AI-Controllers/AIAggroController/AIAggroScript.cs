@@ -6,18 +6,15 @@ public class AIAggroScript : MonoBehaviour
 {
     [SerializeField]
     Transform player;
-
     [SerializeField]
     float aggroRange;
-
     [SerializeField]
     float moveSpeed;
-
     [SerializeField]
     Transform castPoint;
-
     [SerializeField]
     bool isFacingLeft = true; // checkbox for the dev when placing an AI if it is facing Left or not !!! VERY IMPORTANT !!!
+    public float aggroDuration; // timer for how long the player will be aggroed
 
     Vector3 baseScale;
 
@@ -40,7 +37,7 @@ public class AIAggroScript : MonoBehaviour
     {
         baseScale = transform.localScale;
         rb2d = GetComponent<Rigidbody2D>();
-        rb2d.gravityScale = 50f;   
+        rb2d.gravityScale = 30f;   
         animator = GetComponent<Animator>(); 
         audioSource = gameObject.GetComponent<AudioSource>(); 
     }
@@ -61,7 +58,7 @@ public class AIAggroScript : MonoBehaviour
                     isSearching = true;
                     //Player will be chased for 2 seconds and after that the AI stops. 
                     //Might wanna do a coroutine for this in the future.
-                    Invoke("StopChasingPlayer", 5);
+                    Invoke("StopChasingPlayer", aggroDuration);
                 }
             }
         }
