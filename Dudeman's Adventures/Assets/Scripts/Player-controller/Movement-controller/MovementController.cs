@@ -9,7 +9,7 @@ public class MovementController : MonoBehaviour
     public CharacterController2D controller;
     public Animator animator;
     public AudioSource audioSource;
-    public AudioClip walkingClip;
+   // public AudioClip walkingClip;
     bool isMoving = false;
     public float runSpeed = 50f;
     float horizontalMove = 0f;
@@ -35,7 +35,8 @@ public class MovementController : MonoBehaviour
             jump = true;
         }
 
-        if(Input.GetKeyDown("d") || Input.GetKeyDown("a"))
+        //Walking sounds are currently disabled, because it caused too much clutter in mah ear.
+       /* if(Input.GetKeyDown("d") || Input.GetKeyDown("a"))
         {
             audioSource.loop = true;
             audioSource.clip = walkingClip;
@@ -44,7 +45,7 @@ public class MovementController : MonoBehaviour
         else
         {
             audioSource.loop = false;
-        }
+        }*/
 
 
     }
