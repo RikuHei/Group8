@@ -28,6 +28,7 @@ public class AIAggroScript : MonoBehaviour
     public AudioClip[] aggroAudio;
     public AudioSource audioSource;
     private AudioClip aggroClip;
+    public AudioClip deaggroClip;
 
     private bool isAudioPlaying = false;
 
@@ -39,7 +40,7 @@ public class AIAggroScript : MonoBehaviour
     {
         baseScale = transform.localScale;
         rb2d = GetComponent<Rigidbody2D>();
-        rb2d.gravityScale = 10f;   
+        rb2d.gravityScale = 50f;   
         animator = GetComponent<Animator>(); 
         audioSource = gameObject.GetComponent<AudioSource>(); 
     }
@@ -60,7 +61,7 @@ public class AIAggroScript : MonoBehaviour
                     isSearching = true;
                     //Player will be chased for 2 seconds and after that the AI stops. 
                     //Might wanna do a coroutine for this in the future.
-                    Invoke("StopChasingPlayer", 2);
+                    Invoke("StopChasingPlayer", 5);
                 }
             }
         }
@@ -158,6 +159,8 @@ public class AIAggroScript : MonoBehaviour
         isAggro = false;
         isSearching = false;
         rb2d.velocity = new Vector2(0, 0);
+        audioSource.clip = deaggroClip;
+        audioSource.Play();
     }
 
     bool IsNearEdge()
