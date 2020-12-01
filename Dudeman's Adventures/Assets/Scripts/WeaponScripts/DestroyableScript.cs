@@ -40,7 +40,7 @@ public class DestroyableScript : MonoBehaviour
         if(animator != null)
         {  
             //Setting the HP integer accordingly
-            animator.SetInteger("HP", health);
+            //animator.SetInteger("HP", health);
         }
 
         if(health <= 0)

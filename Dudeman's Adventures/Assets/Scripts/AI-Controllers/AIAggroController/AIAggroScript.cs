@@ -28,7 +28,8 @@ public class AIAggroScript : MonoBehaviour
     public AudioClip[] aggroAudio;
     public AudioSource audioSource;
     private AudioClip aggroClip;
-    private bool aggroSoundActive = false;
+
+    private bool isAggroPlaying = false;
 
     private bool isAggro = false;
     private bool isSearching = false;
@@ -61,10 +62,6 @@ public class AIAggroScript : MonoBehaviour
                     //Might wanna do a coroutine for this in the future.
                     Invoke("StopChasingPlayer", 2);
                 }
-                else
-                {
-                    Invoke("PlayRandomAggro", 0);  
-                }
             }
         }
 
@@ -72,6 +69,13 @@ public class AIAggroScript : MonoBehaviour
         {
             ChasePlayer();    
         }
+
+        if(isAggro == true && !audioSource.isPlaying && isAggroPlaying == false)
+        {
+            isAggroPlaying = true;
+            PlayRandomAggro();
+        }
+
         // This code below is for a 'Dumber AI' that will chase the player even if they are
         // behind a wall. I am just leaving this here because don't know yet how we want to use the aggro mechanic.
        /* float distToPlayer = Vector2.Distance(transform.position, player.position);
@@ -149,7 +153,7 @@ public class AIAggroScript : MonoBehaviour
 
     void StopChasingPlayer()
     {
-        Debug.Log("testi");
+        isAggroPlaying = false;
         animator.SetBool("isAggro", false);
         isAggro = false;
         isSearching = false;
