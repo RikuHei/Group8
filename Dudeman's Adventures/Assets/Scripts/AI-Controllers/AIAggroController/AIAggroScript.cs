@@ -25,15 +25,22 @@ public class AIAggroScript : MonoBehaviour
 
     public Animator animator;
 
+    public AudioClip[] aggroAudio;
+    public AudioSource audioSource;
+    private AudioClip aggroClip;
+    private bool aggroSoundActive = false;
+
     private bool isAggro = false;
     private bool isSearching = false;
+
     // Start is called before the first frame update
     void Start()
     {
         baseScale = transform.localScale;
         rb2d = GetComponent<Rigidbody2D>();
         rb2d.gravityScale = 10f;   
-        animator = GetComponent<Animator>();  
+        animator = GetComponent<Animator>(); 
+        audioSource = gameObject.GetComponent<AudioSource>(); 
     }
 
     // Update is called once per frame
@@ -54,12 +61,16 @@ public class AIAggroScript : MonoBehaviour
                     //Might wanna do a coroutine for this in the future.
                     Invoke("StopChasingPlayer", 2);
                 }
+                else
+                {
+                    Invoke("PlayRandomAggro", 0);  
+                }
             }
         }
 
         if (isAggro == true)
         {
-            ChasePlayer();
+            ChasePlayer();    
         }
         // This code below is for a 'Dumber AI' that will chase the player even if they are
         // behind a wall. I am just leaving this here because don't know yet how we want to use the aggro mechanic.
@@ -117,6 +128,7 @@ public class AIAggroScript : MonoBehaviour
     {
         Vector3 newScale = baseScale;
         animator.SetBool("isAggro", true);
+
         
         if(transform.position.x < player.position.x)
         {
@@ -137,6 +149,7 @@ public class AIAggroScript : MonoBehaviour
 
     void StopChasingPlayer()
     {
+        Debug.Log("testi");
         animator.SetBool("isAggro", false);
         isAggro = false;
         isSearching = false;
@@ -175,7 +188,16 @@ public class AIAggroScript : MonoBehaviour
         }
 
     }
-    
+
+    void PlayRandomAggro()
+    {
+        int index = Random.Range(0, aggroAudio.Length);
+        aggroClip = aggroAudio[index];
+        audioSource.clip = aggroClip;
+        audioSource.Play();
+
+        Debug.Log("aggrosound");
+    }
     
 
 }

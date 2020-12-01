@@ -9,9 +9,14 @@ public class DestroyableScript : MonoBehaviour
     public Animator animator;
     private bool hit;
 
+    public AudioClip damageTakenAudio;
+    public AudioSource audio;
+
     void Start()
     {  
         animator = GetComponent<Animator>();
+
+        audio = GetComponent<AudioSource>();
 
         //Calls to reset hit animation (every 0.5 sec) value to false. 
         InvokeRepeating("ResetHitTrigger", 0.5f, 0.5f);
@@ -27,6 +32,10 @@ public class DestroyableScript : MonoBehaviour
     {
         health -= damage;
         animator.SetBool("hit", true);
+
+        audio.clip = damageTakenAudio;
+        audio.Play();
+
 
         if(animator != null)
         {  
