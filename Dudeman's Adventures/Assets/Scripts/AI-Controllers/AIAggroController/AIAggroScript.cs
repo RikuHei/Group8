@@ -29,7 +29,7 @@ public class AIAggroScript : MonoBehaviour
     public AudioSource audioSource;
     private AudioClip aggroClip;
 
-    private bool isAggroPlaying = false;
+    private bool isAudioPlaying = false;
 
     private bool isAggro = false;
     private bool isSearching = false;
@@ -70,9 +70,9 @@ public class AIAggroScript : MonoBehaviour
             ChasePlayer();    
         }
 
-        if(isAggro == true && !audioSource.isPlaying && isAggroPlaying == false)
+        if(isAggro == true && !audioSource.isPlaying && isAudioPlaying == false)
         {
-            isAggroPlaying = true;
+            isAudioPlaying = true;
             PlayRandomAggro();
         }
 
@@ -153,7 +153,7 @@ public class AIAggroScript : MonoBehaviour
 
     void StopChasingPlayer()
     {
-        isAggroPlaying = false;
+        isAudioPlaying = false;
         animator.SetBool("isAggro", false);
         isAggro = false;
         isSearching = false;
@@ -199,8 +199,6 @@ public class AIAggroScript : MonoBehaviour
         aggroClip = aggroAudio[index];
         audioSource.clip = aggroClip;
         audioSource.Play();
-
-        Debug.Log("aggrosound");
     }
     
 
