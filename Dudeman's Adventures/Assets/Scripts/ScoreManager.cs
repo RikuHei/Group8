@@ -13,13 +13,23 @@ public class ScoreManager : MonoBehaviour
 
     public float scoreTime = 0;
 
+    private float savedScore;
+    private string savedScoreName;
+
     // Start is called before the first frame update
     void Start()
     {
-        textBox.text = scoreTime.ToString();
-
         levelName = SceneManager.GetActiveScene().name;
+        savedScoreName = levelName + "SavedScore";
         highScoreName = levelName + "HighScore";
+
+        if(PlayerPrefs.HasKey(savedScoreName) == true)
+        {
+            savedScore = PlayerPrefs.GetFloat(savedScoreName);
+            scoreTime = savedScore;
+            PlayerPrefs.DeleteKey(savedScoreName);
+        }
+        textBox.text = scoreTime.ToString();
     }
 
     // Update is called once per frame
@@ -40,5 +50,12 @@ public class ScoreManager : MonoBehaviour
         {
             Debug.Log(PlayerPrefs.GetFloat(highScoreName));
         }
+    }
+
+    public void SaveScoreOnDeath()
+    {
+        PlayerPrefs.SetFloat(savedScoreName, scoreTime);
+        Debug.Log("Player died, saving the time:");
+        Debug.Log(PlayerPrefs.GetFloat(savedScoreName));
     }
 }
