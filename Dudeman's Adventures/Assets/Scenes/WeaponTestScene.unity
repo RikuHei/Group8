@@ -875,6 +875,7 @@ GameObject:
   - component: {fileID: 730145715}
   - component: {fileID: 730145714}
   - component: {fileID: 730145713}
+  - component: {fileID: 730145723}
   - component: {fileID: 730145722}
   - component: {fileID: 730145717}
   m_Layer: 8
@@ -1120,6 +1121,18 @@ MonoBehaviour:
   damageImmunity: 0
   healthBar: {fileID: 492306721}
   animator: {fileID: 730145714}
+--- !u!114 &730145723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730145712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56e86e036c074ad42b37d05340bdca87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &754665527
 GameObject:
   m_ObjectHideFlags: 0
@@ -2613,6 +2626,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textBox: {fileID: 1516466298}
+  highScoreName: 
+  scoreTime: 0
 --- !u!1 &1627222103
 GameObject:
   m_ObjectHideFlags: 0
