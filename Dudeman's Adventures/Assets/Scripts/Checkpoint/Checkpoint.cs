@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
+    public LevelManager levelManager;
 
-    private GameMaster gm;
-    void Start()
+    void start()
     {
-        gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+        levelManager = FindObjectOfType<LevelManager>();
+    }
+
+    void update()
+    {
+
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("Player"))
+        Debug.Log("yep");
+        if (col.name == "Player")
         {
-            gm.lastCheckpointPos = transform.position;
+            levelManager.currentCheckpoint = gameObject;
         }
     }
-
 }
