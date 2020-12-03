@@ -26,15 +26,12 @@ public class MoveToNextLevel : MonoBehaviour
             if(PlayerPrefs.HasKey(scoreManager.highScoreName) == false)
             {
                 PlayerPrefs.SetFloat(scoreManager.highScoreName, scoreManager.scoreTime);
-                Debug.Log("There wasn't a high score, new score name:");
-                Debug.Log(scoreManager.highScoreName);
-
+                Debug.Log("There wasn't a high score, new high score: " + scoreManager.scoreTime);
             }
             else if(PlayerPrefs.GetFloat(scoreManager.highScoreName) > scoreManager.scoreTime)
             {
                 PlayerPrefs.SetFloat(scoreManager.highScoreName, scoreManager.scoreTime);
-                Debug.Log("There was a high score, replacing:");
-                Debug.Log(scoreManager.highScoreName);
+                Debug.Log("Replacing old high score with " + scoreManager.highScoreName + ", " + scoreManager.scoreTime);
             }
             
             if (SceneManager.GetActiveScene().buildIndex == 7)
