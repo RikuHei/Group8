@@ -21,7 +21,8 @@ public class RestartOnPlayerDeath : MonoBehaviour
     public HealthBar healthBar;
     public Animator animator;
 
-    
+    private ScoreManager scoreManager;
+    [SerializeField] private bool ResetScoreOnDeath = false;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,7 @@ public class RestartOnPlayerDeath : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         animator = GetComponent<Animator>();
+        scoreManager = FindObjectOfType<ScoreManager>();
     }
 
     // Update is called once per frame
@@ -43,6 +45,10 @@ public class RestartOnPlayerDeath : MonoBehaviour
 
     public void RestartSceneOnDeath()
     {
+        if(!ResetScoreOnDeath)
+        {
+            scoreManager.SaveScoreOnDeath();
+        }
         Scene thisScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(thisScene.name);
         Debug.Log("Game restarted");

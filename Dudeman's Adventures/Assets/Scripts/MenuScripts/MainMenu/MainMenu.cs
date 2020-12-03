@@ -10,6 +10,11 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    public void HighScores()
+    {
+        SceneManager.LoadScene("HighScores");
+    }
+
     public void QuitGame()
     {
         Debug.Log("QUIT was pressed");
