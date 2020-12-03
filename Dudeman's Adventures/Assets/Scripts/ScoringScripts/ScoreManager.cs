@@ -45,17 +45,11 @@ public class ScoreManager : MonoBehaviour
 
         levelName = SceneManager.GetActiveScene().name;
         highScoreName = levelName + "HighScore";
-
-        if(PlayerPrefs.HasKey(highScoreName) == true)
-        {
-            Debug.Log(PlayerPrefs.GetFloat(highScoreName));
-        }
     }
 
     public void SaveScoreOnDeath()
     {
         PlayerPrefs.SetFloat(savedScoreName, scoreTime);
-        Debug.Log("Player died, saving the time:");
-        Debug.Log(PlayerPrefs.GetFloat(savedScoreName));
+        Debug.Log("Player died, saving the time:" + PlayerPrefs.GetFloat(savedScoreName));
     }
 }
