@@ -15,7 +15,12 @@ public class HighScoreScript : MonoBehaviour
         {
             if(PlayerPrefs.HasKey("Level0" + (i + 1) + "HighScore") == true)
             {
-                highScoreFields[i].text = PlayerPrefs.GetFloat("Level0" + (i + 1) + "HighScore").ToString("0.00") + "s";
+                float highScore = PlayerPrefs.GetFloat("Level0" + (i + 1) + "HighScore");
+                if(highScore > 999.99)
+                {
+                    highScoreFields[i].fontSize = 20;
+                }
+                highScoreFields[i].text = highScore.ToString("0.00") + "s";
             }
         }
     }
