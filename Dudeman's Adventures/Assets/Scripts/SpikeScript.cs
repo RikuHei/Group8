@@ -6,18 +6,7 @@ public class SpikeScript : MonoBehaviour
 {
     public bool instaDeath;
     public bool enemyInstaDeath = true;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int spikeDamage = 10;
 
     void OnCollisionStay2D(Collision2D collision)
     {
@@ -27,7 +16,7 @@ public class SpikeScript : MonoBehaviour
         }
         else if(collision.transform.name == "Player" && !instaDeath)
         {
-            GameObject.Find("Player").GetComponent<RestartOnPlayerDeath>().TakeDamage(5);
+            GameObject.Find("Player").GetComponent<RestartOnPlayerDeath>().TakeDamage(spikeDamage);
         }
         else if(collision.collider.gameObject.layer == LayerMask.NameToLayer("Enemy") && enemyInstaDeath)
         {
