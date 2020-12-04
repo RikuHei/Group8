@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<CharacterController2D>();
+        Debug.Log( player.transform.position);
     }
 
     // Update is called once per frame
@@ -24,6 +25,8 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log("Player respawned");
         player.transform.position = currentCheckpoint.transform.position;
+        Debug.Log(currentCheckpoint.transform.position);
+        Debug.Log(player.transform.position);
     }
 
 }
