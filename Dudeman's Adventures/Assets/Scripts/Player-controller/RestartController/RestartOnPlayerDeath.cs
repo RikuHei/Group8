@@ -66,12 +66,17 @@ public class RestartOnPlayerDeath : MonoBehaviour
 
             if (currentHealth < 1)
             {
-                GameObject.Find("Player").GetComponent<MovementController>().runSpeed = 0;
-                GameObject.Find("Player").GetComponent<CharacterController2D>().m_JumpForce = 0;
-                animator.SetBool("IsDead", true);
-                Invoke("RestartSceneOnDeath", 3f);
+                Die();
             }
         }
+    }
+
+    public void Die()
+    {
+        GameObject.Find("Player").GetComponent<MovementController>().runSpeed = 0;
+        GameObject.Find("Player").GetComponent<CharacterController2D>().m_JumpForce = 0;
+        animator.SetBool("IsDead", true);
+        Invoke("RestartSceneOnDeath", 3f);
     }
 
     public void EnableDamageImmunity(float time, bool powerUp)
