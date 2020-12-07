@@ -21,7 +21,11 @@ public class Checkpoint : MonoBehaviour
         Debug.Log("Collided with checkpoint");
         if (col.name == "Player")
         {
-            levelManager.currentCheckpoint = gameObject;
+            // update spawnpoint position when player collides with checkpoint
+            levelManager.spawnPoint.transform.position = gameObject.transform.position;
+            // destroy checkpoint after spawnpoint has been updated
+            Destroy(gameObject);
+
         }
     }
 }
