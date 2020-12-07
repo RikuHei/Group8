@@ -19,7 +19,6 @@ public class ButtonController : MonoBehaviour
                 ButtonPress();
             }
         }
-        Debug.Log(characterInRange);
     }
 
     public void ButtonPress()
@@ -28,14 +27,12 @@ public class ButtonController : MonoBehaviour
         if (buttonIsActivated == false)
         {
             buttonIsActivated = true;
-            Debug.Log("Button activated");
             animator.SetBool("IsButtonPressed", true);
         }
 
         else if (buttonIsActivated == true)
         {
             buttonIsActivated = false;
-            Debug.Log("Button disabled");
             animator.SetBool("IsButtonPressed", false);
         }
     }
