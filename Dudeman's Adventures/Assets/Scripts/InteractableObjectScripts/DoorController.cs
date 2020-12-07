@@ -7,10 +7,10 @@ public class DoorController : MonoBehaviour
 
     //Fields for choosing interactables that are used to open the door (drag'n'drop)
     [SerializeField] GameObject[] pressurePlates;
-    [SerializeField] GameObject[] buttons;
+    [SerializeField] GameObject[] levers;
 
     int notActivatedPlates = 0;
-    int notActivatedButtons = 0;
+    int notActivatedLevers = 0;
 
     public Animator animator;
 
@@ -18,7 +18,7 @@ public class DoorController : MonoBehaviour
     void Start()
     {
         GetNOPlates();
-        GetNOButtons();
+        GetNOLevers();
         animator = GetComponent<Animator>();
     }
 
@@ -43,53 +43,52 @@ public class DoorController : MonoBehaviour
         return notActivatedPlates;
     }
 
-    public int GetNOButtons()
+    public int GetNOLevers()
     {
         int x = 0;
 
-        for (int i = 0; i < buttons.Length; i++)
+        for (int i = 0; i < levers.Length; i++)
         {
-            if(buttons[i].GetComponent<ButtonController>().buttonIsActivated == false)
+            if(levers[i].GetComponent<ButtonController>().buttonIsActivated == false)
             {
                 x++;
             }
-            else if(buttons[i].GetComponent<ButtonController>().buttonIsActivated == true)
+            else if(levers[i].GetComponent<ButtonController>().buttonIsActivated == true)
             {
-                notActivatedButtons--;
+                notActivatedLevers--;
             }
         }
 
-        notActivatedButtons = x;
+        notActivatedLevers = x;
 
-        return notActivatedButtons;
+        return notActivatedLevers;
     }
 
-    //This should be animated I guess, now it just disables the collider & renderer of the door
     public void OpenDoor()
     {
         GetComponent<Collider2D>().enabled = false;
         animator.SetBool("OpenDoor", true);
-        //GetComponent<SpriteRenderer>().enabled = false;
     }
 
-    //We can use this to make the door appear again if for example one of the pressure plates is unactivated
-    /*
     public void CloseDoor()
     {
         GetComponent<Collider2D>().enabled = true;
-        GetComponent<SpriteRenderer>().enabled = true;
+        animator.SetBool("OpenDoor", false);
     }
-    */
 
     // Update is called once per frame
     void Update()
     {
         GetNOPlates();
-        GetNOButtons();
+        GetNOLevers();
 
-        if(notActivatedPlates <= 0 && notActivatedButtons <= 0)
+        if(notActivatedPlates <= 0 && notActivatedLevers <= 0)
         {
             OpenDoor();
+        }
+        else
+        {
+            CloseDoor();
         }
     }
 }
