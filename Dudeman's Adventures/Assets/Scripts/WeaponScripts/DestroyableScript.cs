@@ -5,7 +5,8 @@ using UnityEngine;
 public class DestroyableScript : MonoBehaviour
 {
     public int health = 100;
-
+    public float itemSpawnChance;
+    public GameObject spawnableItem;
     public Animator animator;
     private bool hit;
 
@@ -49,9 +50,22 @@ public class DestroyableScript : MonoBehaviour
         }
     }
 
+    public void SpawnHpItem()
+    {
+        if(Random.value <= itemSpawnChance)
+        {
+            Instantiate(spawnableItem, transform.position, transform.rotation);
+        }
+    }
+
     void Die()
     {
-        if(animator != null)
+        if(spawnableItem != null)
+        {
+            SpawnHpItem();
+            Destroy(gameObject);
+        }
+        else if(animator != null)
         {
             //Destroying the gameobject after a short pause to play the animation, gotta find a better way
             Destroy(gameObject);
