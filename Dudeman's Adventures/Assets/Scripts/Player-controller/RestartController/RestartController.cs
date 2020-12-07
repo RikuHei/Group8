@@ -8,6 +8,7 @@ public class RestartController : MonoBehaviour
 
     Rigidbody2D rb;
     AudioSource audioSource;
+    public LevelManager levelManager;
 
     private ScoreManager scoreManager;
     [SerializeField] private bool ResetScoreOnDeath = false;
@@ -21,6 +22,7 @@ public class RestartController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
+        levelManager = FindObjectOfType<LevelManager>();
         scoreManager = FindObjectOfType<ScoreManager>();
     }
 
@@ -50,8 +52,7 @@ public class RestartController : MonoBehaviour
         // if player fall below fallZone value (-30) game will restart
         if (rb.transform.position.y < fallZone)
         {
-            Destroy(gameObject);
-            RestartScene();
+            levelManager.RespawnPlayer();
         }
 
     }
