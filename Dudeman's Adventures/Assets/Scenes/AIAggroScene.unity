@@ -207,6 +207,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1666359092522057865, guid: 6de3fcfcb87d0b741b3b3fe7149c7f39,
+        type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 492306721}
     - target: {fileID: 1666359092522057866, guid: 6de3fcfcb87d0b741b3b3fe7149c7f39,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7789,13 +7794,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a92b48ef1de0f3c4dae0b616ea8844f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 76837003}
   aggroRange: 8
   moveSpeed: 8
   castPoint: {fileID: 1921669432}
   isFacingLeft: 1
   aggroDuration: 4
-  animator: {fileID: 0}
+  animator: {fileID: 1683482803}
   aggroAudio:
   - {fileID: 8300000, guid: ca7aa0e9c3321f3418872272af5ee339, type: 3}
   - {fileID: 8300000, guid: e3efde712f0a3f14d9a08d15f42d4989, type: 3}
@@ -7996,6 +8001,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1683482803 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1666359092522057857, guid: 6de3fcfcb87d0b741b3b3fe7149c7f39,
+    type: 3}
+  m_PrefabInstance: {fileID: 56263477}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1787234546
 GameObject:
   m_ObjectHideFlags: 0
