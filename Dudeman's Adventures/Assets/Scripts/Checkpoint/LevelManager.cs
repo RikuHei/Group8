@@ -5,14 +5,13 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
 
-    public GameObject currentCheckpoint;
-
+    public GameObject spawnPoint;
     private CharacterController2D player;
     // Start is called before the first frame update
     void Start()
     {
         player = FindObjectOfType<CharacterController2D>();
-        Debug.Log( player.transform.position);
+        Debug.Log(player.transform.position);
     }
 
     // Update is called once per frame
@@ -24,9 +23,7 @@ public class LevelManager : MonoBehaviour
     public void RespawnPlayer()
     {
         Debug.Log("Player respawned");
-        player.transform.position = currentCheckpoint.transform.position;
-        Debug.Log(currentCheckpoint.transform.position);
-        Debug.Log(player.transform.position);
+        player.transform.position = spawnPoint.transform.position;
     }
 
 }
