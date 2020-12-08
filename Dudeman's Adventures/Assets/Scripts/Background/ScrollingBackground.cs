@@ -5,7 +5,7 @@ using UnityEngine;
 public class ScrollingBackground : MonoBehaviour
 {
 
-    public float bgSpeed = 0.1f;
+    public float bgSpeed = 0.05f;
     public float TimeForScroll = 0;
     public Renderer bgRend;
 
@@ -22,18 +22,19 @@ public class ScrollingBackground : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.GetComponent<Rigidbody2D>().velocity.x > 0)
+       //Debug.Log(player.GetComponent<Rigidbody2D>().velocity.x);
+        if (player.GetComponent<Rigidbody2D>().velocity.x > 8)
         {
             // Debug.Log("right");
             TimeForScroll += Time.deltaTime;
-            bgSpeed = 0.1f;
+            bgSpeed = 0.05f;
 
         }
-        if (player.GetComponent<Rigidbody2D>().velocity.x < 0)
+        if (player.GetComponent<Rigidbody2D>().velocity.x < -8)
         {
             //Debug.Log("left");
             TimeForScroll -= Time.deltaTime;
-            bgSpeed = 0.1f;
+            bgSpeed = 0.05f;
 
         }
 
