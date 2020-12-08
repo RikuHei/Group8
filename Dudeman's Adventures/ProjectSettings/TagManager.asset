@@ -9,6 +9,7 @@ TagManager:
   - GM
   - LevelManager
   - Power-up
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -21,8 +22,8 @@ TagManager:
   - Player
   - Terrain
   - Enemy
-  - 
-  - 
+  - Teleporter
+  - Bullet
   - 
   - 
   - 
