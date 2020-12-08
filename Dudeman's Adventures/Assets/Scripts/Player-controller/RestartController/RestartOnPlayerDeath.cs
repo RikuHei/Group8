@@ -97,6 +97,7 @@ public class RestartOnPlayerDeath : MonoBehaviour
 
     public void Die()
     {
+        healthBar.SetHealth(0);
         RestartController.isDead = true;
         Invoke("RestartSceneOnDeath", 2f);
     }
