@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class AIAggroScript : MonoBehaviour
 {
-    [SerializeField]
-    Transform player;
+    public Transform player;
     [SerializeField]
     float aggroRange;
     [SerializeField]
@@ -56,8 +55,6 @@ public class AIAggroScript : MonoBehaviour
                 if(isSearching == false)
                 {
                     isSearching = true;
-                    //Player will be chased for 2 seconds and after that the AI stops. 
-                    //Might wanna do a coroutine for this in the future.
                     Invoke("StopChasingPlayer", aggroDuration);
                 }
             }
