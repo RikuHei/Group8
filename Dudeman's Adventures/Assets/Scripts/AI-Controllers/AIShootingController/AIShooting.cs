@@ -175,6 +175,7 @@ public class AIShooting : MonoBehaviour
         aggroClip = aggroAudio[index];
         audioSource.clip = aggroClip;
         audioSource.Play();
+        Debug.Log("playaggro");
     }
 
     void PlayRandomShoot()
