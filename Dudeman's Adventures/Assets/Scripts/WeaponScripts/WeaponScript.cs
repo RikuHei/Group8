@@ -14,7 +14,7 @@ public class WeaponScript : MonoBehaviour
     public AudioSource audioSource;
     public AudioListener audioListener;
     private AudioClip shootClip;
-    
+
     void Start()
     {
         audioListener = GetComponent<AudioListener>();
@@ -23,12 +23,12 @@ public class WeaponScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1"))
         {
             //Timer for fire rate
-            if(Time.time > nextTimeToFire)
+            if (Time.time > nextTimeToFire)
             {
-                nextTimeToFire = Time.time+4/fireRate;
+                nextTimeToFire = Time.time + 4 / fireRate;
                 Shoot();
             }
         }
@@ -36,8 +36,11 @@ public class WeaponScript : MonoBehaviour
 
     void Shoot()
     {
-       Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
-       PlayRandom();
+        if (!Pause.isPaused && !RestartController.isDead)
+        {
+            Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
+            PlayRandom();
+        }
     }
 
     void PlayRandom()
