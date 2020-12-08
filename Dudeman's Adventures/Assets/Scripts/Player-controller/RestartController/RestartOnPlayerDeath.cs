@@ -24,6 +24,9 @@ public class RestartOnPlayerDeath : MonoBehaviour
     private ScoreManager scoreManager;
     [SerializeField] private bool ResetScoreOnDeath = false;
 
+    public LevelManager levelManager;
+    public MovementController movementController;
+    public CharacterController2D characterController2D;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +34,9 @@ public class RestartOnPlayerDeath : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
         animator = GetComponent<Animator>();
         scoreManager = FindObjectOfType<ScoreManager>();
+        levelManager = FindObjectOfType<LevelManager>();
+        movementController = FindObjectOfType<MovementController>();
+        characterController2D = FindObjectOfType<CharacterController2D>();
     }
 
     // Update is called once per frame
@@ -41,22 +47,40 @@ public class RestartOnPlayerDeath : MonoBehaviour
         {
             TakeDamage(1);
         }
+        if (RestartController.isDead)
+        {
+            movementController.runSpeed = 0;
+            characterController2D.m_JumpForce = 0;
+            animator.SetBool("IsDead", true);
+        }
     }
 
     public void RestartSceneOnDeath()
     {
-        if(!ResetScoreOnDeath)
+        // set isDead state
+        RestartController.isDead = false;
+
+        // restore movement speed, jumpforce and return to idle animation
+        movementController.runSpeed = 50;
+        characterController2D.m_JumpForce = 70;
+        animator.SetBool("IsDead", false);
+
+        // set player hp back to max
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+
+        // respawn player back to spawnpoint
+        levelManager.RespawnPlayer();
+
+        if (!ResetScoreOnDeath)
         {
             scoreManager.SaveScoreOnDeath();
         }
-        Scene thisScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(thisScene.name);
-        Debug.Log("Game restarted");
     }
 
     public void TakeDamage(int damage)
     {
-        if(!damageImmunity && !immunityOnCooldown)
+        if (!damageImmunity && !immunityOnCooldown)
         {
             currentHealth -= damage;
             healthBar.SetHealth(currentHealth);
@@ -73,15 +97,13 @@ public class RestartOnPlayerDeath : MonoBehaviour
 
     public void Die()
     {
-        GameObject.Find("Player").GetComponent<MovementController>().runSpeed = 0;
-        GameObject.Find("Player").GetComponent<CharacterController2D>().m_JumpForce = 0;
-        animator.SetBool("IsDead", true);
-        Invoke("RestartSceneOnDeath", 3f);
+        RestartController.isDead = true;
+        Invoke("RestartSceneOnDeath", 2f);
     }
 
     public void EnableDamageImmunity(float time, bool powerUp)
     {
-        if(!immunityTimerIsRunning)
+        if (!immunityTimerIsRunning)
         {
             damageImmunity = true;
             immunityRoutine = StartCoroutine(ImmunityTimer(time));
