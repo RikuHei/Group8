@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: 1666359092522057858}
   - component: {fileID: 1666359092522057865}
   - component: {fileID: 1666359092522057862}
+  - component: {fileID: 4625345428142193098}
+  - component: {fileID: 3344884834739850133}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -258,6 +260,9 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   animator: {fileID: 1666359092522057857}
   ResetScoreOnDeath: 0
+  levelManager: {fileID: 0}
+  movementController: {fileID: 0}
+  characterController2D: {fileID: 0}
 --- !u!82 &1666359092522057862
 AudioSource:
   m_ObjectHideFlags: 0
@@ -354,6 +359,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4625345428142193098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666359092522057859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94f165e9d06b0e048ace6b4a824fb19b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3344884834739850133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666359092522057859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56e86e036c074ad42b37d05340bdca87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelManager: {fileID: 0}
+  ResetScoreOnDeath: 0
 --- !u!1 &1666359093066831424
 GameObject:
   m_ObjectHideFlags: 0
