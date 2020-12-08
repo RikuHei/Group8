@@ -8,11 +8,13 @@ public class MovementController : MonoBehaviour
 
     public CharacterController2D controller;
     public Animator animator;
-    AudioSource audioSource;
+    public AudioSource audioSource;
+   // public AudioClip walkingClip;
     bool isMoving = false;
     public float runSpeed = 50f;
     float horizontalMove = 0f;
     bool jump = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +34,20 @@ public class MovementController : MonoBehaviour
         {
             jump = true;
         }
+
+        //Walking sounds are currently disabled, because it caused too much clutter in mah ear.
+       /* if(Input.GetKeyDown("d") || Input.GetKeyDown("a"))
+        {
+            audioSource.loop = true;
+            audioSource.clip = walkingClip;
+            audioSource.Play();
+        }
+        else
+        {
+            audioSource.loop = false;
+        }*/
+
+
     }
 
 

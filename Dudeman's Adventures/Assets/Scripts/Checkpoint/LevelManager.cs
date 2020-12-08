@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour
 
     public GameObject spawnPoint;
     private CharacterController2D player;
+
     // Start is called before the first frame update
     void Start()
     {

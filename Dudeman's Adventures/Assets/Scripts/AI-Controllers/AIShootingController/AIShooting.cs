@@ -17,10 +17,22 @@ public class AIShooting : MonoBehaviour
     float aggroRange;
     [SerializeField] // checkbox for the dev when placing an AI if it is facing Left or not !!! VERY IMPORTANT !!!
     bool isFacingLeft = true;
+    public float aggroDuration; // timer for how long the player will be aggroed
 
     Vector3 baseScale;
 
     Rigidbody2D rb2d;
+
+    public Animator animator;
+
+    public AudioClip[] aggroAudio;
+    public AudioSource audioSource;
+    private AudioClip aggroClip;
+    public AudioClip deaggroClip;
+    public AudioClip[] shoot;
+    private AudioClip shootClip;
+
+    private bool isAudioPlaying = false;
 
     private bool isAggro = false;
     private bool isSearching = false;
@@ -28,11 +40,13 @@ public class AIShooting : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         player = GameObject.FindGameObjectWithTag("Player").transform;
-         timeBtwShots = startTimeBtwShots;
-         baseScale = transform.localScale;
-         rb2d = GetComponent<Rigidbody2D>();
-         rb2d.gravityScale = 10f; 
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        timeBtwShots = startTimeBtwShots;
+        baseScale = transform.localScale;
+        rb2d = GetComponent<Rigidbody2D>();
+        rb2d.gravityScale = 10f; 
+        animator = GetComponent<Animator>(); 
+        audioSource = gameObject.GetComponent<AudioSource>(); 
     }
 
     // Update is called once per frame
@@ -49,9 +63,7 @@ public class AIShooting : MonoBehaviour
                 if(isSearching == false)
                 {
                     isSearching = true;
-                    //Player will be chased for 2 seconds and after that the AI stops. 
-                    //Might wanna do a coroutine for this in the future.
-                    Invoke("StopChasingPlayer", 2);
+                    Invoke("StopChasingPlayer", aggroDuration);
                 }
             }
         }
@@ -68,6 +80,12 @@ public class AIShooting : MonoBehaviour
                 timeBtwShots -= Time.deltaTime;
             }
             
+        }
+
+        if(isAggro == true && !audioSource.isPlaying && isAudioPlaying == false)
+        {
+            isAudioPlaying = true;
+            PlayRandomAggro();
         }
     }
 
@@ -115,11 +133,13 @@ public class AIShooting : MonoBehaviour
     {
         Instantiate(AIBulletController, Muzzle.position, Quaternion.identity);
         timeBtwShots = startTimeBtwShots;
+        PlayRandomShoot();
     }
 
     void ChasePlayer()
     {
         Vector3 newScale = baseScale;
+        animator.SetBool("isAggro", true);
         
         if(transform.position.x < player.position.x)
         {
@@ -138,11 +158,31 @@ public class AIShooting : MonoBehaviour
         
     }
 
-        void StopChasingPlayer()
+    void StopChasingPlayer()
     {
+        isAudioPlaying = false;
+        animator.SetBool("isAggro", false);
         isAggro = false;
         isSearching = false;
         rb2d.velocity = new Vector2(0, 0);
+        audioSource.clip = deaggroClip;
+        audioSource.Play();
+    }
+
+    void PlayRandomAggro()
+    {
+        int index = Random.Range(0, aggroAudio.Length);
+        aggroClip = aggroAudio[index];
+        audioSource.clip = aggroClip;
+        audioSource.Play();
+    }
+
+    void PlayRandomShoot()
+    {
+        int index = Random.Range(0, shoot.Length);
+        shootClip = shoot[index];
+        audioSource.clip = shootClip;
+        audioSource.Play();
     }
     
 }

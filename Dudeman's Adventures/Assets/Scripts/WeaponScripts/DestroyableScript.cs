@@ -8,9 +8,20 @@ public class DestroyableScript : MonoBehaviour
     public float itemSpawnChance;
     public GameObject spawnableItem;
     public Animator animator;
+    private bool hit;
+
+    public AudioClip damageTakenAudio;
+    public AudioSource audio;
 
     void Start()
-    {        
+    {  
+        animator = GetComponent<Animator>();
+
+        audio = GetComponent<AudioSource>();
+
+        //Calls to reset hit animation (every 0.5 sec) value to false. 
+        InvokeRepeating("ResetHitTrigger", 0.5f, 0.5f);
+
         if(animator != null)
         {
             //Setting the health as an integer in the animator
@@ -21,11 +32,16 @@ public class DestroyableScript : MonoBehaviour
     public void TakeDamage (int damage)
     {
         health -= damage;
+        animator.SetBool("hit", true);
+
+        audio.clip = damageTakenAudio;
+        audio.Play();
+
 
         if(animator != null)
-        {
+        {  
             //Setting the HP integer accordingly
-            animator.SetInteger("HP", health);
+            //animator.SetInteger("HP", health);
         }
 
         if(health <= 0)
@@ -44,6 +60,7 @@ public class DestroyableScript : MonoBehaviour
 
     void Die()
     {
+
         if(spawnableItem != null)
         {
             SpawnHpItem();
@@ -52,11 +69,17 @@ public class DestroyableScript : MonoBehaviour
         else if(animator != null)
         {
             //Destroying the gameobject after a short pause to play the animation, gotta find a better way
-            Destroy(gameObject, 1f);
+            Destroy(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
     }
+
+    void ResetHitTrigger()
+    {
+        animator.SetBool("hit", false);
+    }
+
 }
