@@ -15,15 +15,14 @@ public class Teleportation : MonoBehaviour
         if (collision.gameObject.tag == "Player" && Teleportation.StartTeleport == 1)
         {
             Teleportation.StartTeleport = 0;
-            StartCoroutine (Teleport());
+            Invoke("Teleport", 0.3f);
         }
     }
 
-    IEnumerator Teleport()
+    void Teleport()
     {
-        //Waits for nothing atm but this can be later on changed.
-        yield return new WaitForSeconds(0);
+
         //Teleports the player to the position of the set teleporter's vector position.
-        Player.transform.position = new Vector2 (TeleportToLocation.transform.position.x, TeleportToLocation.transform.position.y);
+        Player.transform.position = new Vector3 (TeleportToLocation.transform.position.x, TeleportToLocation.transform.position.y, -10);
     }
 }
