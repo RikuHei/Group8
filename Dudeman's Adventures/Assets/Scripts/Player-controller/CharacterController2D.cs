@@ -157,7 +157,7 @@ public class CharacterController2D : MonoBehaviour
             m_Rigidbody2D.gravityScale = playerJumpGravity;
 
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce), ForceMode2D.Impulse);
-            
+
             PlayRandomJump();
         }
     }
@@ -209,9 +209,12 @@ public class CharacterController2D : MonoBehaviour
     //function to play random jump sound
     void PlayRandomJump()
     {
-        int index = Random.Range(0, jump.Length);
-        jumpClip = jump[index];
-        audioSource.clip = jumpClip;
-        audioSource.Play();
+        if (!Pause.isPaused && !RestartController.isDead)
+        {
+            int index = Random.Range(0, jump.Length);
+            jumpClip = jump[index];
+            audioSource.clip = jumpClip;
+            audioSource.Play();
+        }
     }
 }
