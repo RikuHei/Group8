@@ -195,6 +195,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 47832828}
   m_CullTransparentMesh: 0
+--- !u!82 &49280218 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1666359092522057862, guid: 6de3fcfcb87d0b741b3b3fe7149c7f39,
+    type: 3}
+  m_PrefabInstance: {fileID: 1659109745}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &49280221 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1666359092522057857, guid: 6de3fcfcb87d0b741b3b3fe7149c7f39,
@@ -1688,6 +1694,12 @@ Transform:
   m_Father: {fileID: 754665534}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1204781044 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 849676790679501937, guid: 98f2d501dd31d924dab0733ac9a10394,
+    type: 3}
+  m_PrefabInstance: {fileID: 849676792083029170}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1242383660
 GameObject:
   m_ObjectHideFlags: 0
@@ -2975,6 +2987,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1627222105}
     m_Modifications:
+    - target: {fileID: 6631741359397617586, guid: 022b9f592c1398b4e95c5a14007f0568,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1204781044}
+    - target: {fileID: 6631741359397617586, guid: 022b9f592c1398b4e95c5a14007f0568,
+        type: 3}
+      propertyPath: audio
+      value: 
+      objectReference: {fileID: 49280218}
     - target: {fileID: 6631741359397617589, guid: 022b9f592c1398b4e95c5a14007f0568,
         type: 3}
       propertyPath: m_Tiles.Array.size
@@ -3183,7 +3205,7 @@ PrefabInstance:
     - target: {fileID: 6631741359397617608, guid: 022b9f592c1398b4e95c5a14007f0568,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6631741359397617609, guid: 022b9f592c1398b4e95c5a14007f0568,
         type: 3}
@@ -3946,6 +3968,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Destroyable Tile
+      objectReference: {fileID: 0}
+    - target: {fileID: 849676790679501837, guid: 98f2d501dd31d924dab0733ac9a10394,
+        type: 3}
+      propertyPath: damageTakenAudio
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 849676790679501936, guid: 98f2d501dd31d924dab0733ac9a10394,
         type: 3}
