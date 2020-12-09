@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2483415774249005385}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Spawnpoint
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3031355087867954012}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.94, y: -0.43, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8314373059436389388}
@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8314373059436389388}
   - component: {fileID: 8314373059436389389}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Level Manager
   m_TagString: LevelManager
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 8314373059720794300}
   - component: {fileID: 8314373059720794243}
   - component: {fileID: 8314373059720794242}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Checkpoint01
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
@@ -102,7 +102,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8314373059720794301}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.63, y: -0.46966267, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8314373059436389388}
