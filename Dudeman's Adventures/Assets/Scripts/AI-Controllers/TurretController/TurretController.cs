@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class TurretController : MonoBehaviour
 {
     public float Range;
@@ -9,65 +10,59 @@ public class TurretController : MonoBehaviour
     bool Detected = false;
     Vector2 Direction;
     public GameObject Gun;
-    public GameObject AIBullet;
+    public GameObject bullet;
     public float FireRate;
     float nextTimeToFire = 0;
-    public Transform ShootPoint;
+    public Transform Shootpoint;
     public float Force;
-
+    
     // Start is called before the first frame update
     void Start()
-    {
+    {  
         
     }
-
     // Update is called once per frame
     void Update()
     {
         Vector2 targetPos = Target.position;
 
         Direction = targetPos - (Vector2)transform.position;
+        
+        RaycastHit2D rayInfo = Physics2D.Raycast(transform.position,Direction,Range);
 
-        RaycastHit2D rayInfo = Physics2D.Raycast(transform.position, Direction, Range);
-
-        if(rayInfo)
+        if (rayInfo)
         {
             if(rayInfo.collider.gameObject.tag == "Player")
             {
-                if(Detected == false)
+                if (Detected == false)
                 {
                     Detected = true;
                 }
             }
             else
             {
-                if(Detected == true)
+                if (Detected == true)
                 {
                     Detected = false;
                 }
             }
-
         }
-
-        if(Detected)
+        if (Detected)
         {
-            Gun.transform.right = Direction;
+            Gun.transform.up = Direction;
             if(Time.time > nextTimeToFire)
             {
-                nextTimeToFire = Time.time+4/FireRate;
+                nextTimeToFire = Time.time + 1 / FireRate;
                 shoot();
-                Debug.Log("pew");
             }
         }
     }
-
     void shoot()
     {
-        GameObject AIBulletIns = Instantiate(AIBullet, ShootPoint.position, Quaternion.identity);
-        AIBulletIns.GetComponent<Rigidbody2D>().AddForce(Direction * Force);
+        GameObject BulletIns = Instantiate(bullet, Shootpoint.position, Quaternion.identity);
+        BulletIns.GetComponent<Rigidbody2D>().AddForce(Direction * Force);
     }
-
-    void OnDrawGizmosSelected() 
+    private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(transform.position, Range);
     }
