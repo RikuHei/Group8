@@ -21,10 +21,10 @@ public class SpikeScript : MonoBehaviour
             {
                 GameObject.Find("Player").GetComponent<RestartOnPlayerDeath>().TakeDamage(spikeDamage);
             }
-            else if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Enemy") && enemyInstaDeath)
-            {
-                Destroy(collision.collider.gameObject);
-            }
+        }
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Enemy") && enemyInstaDeath)
+        {
+            Destroy(collision.collider.gameObject);
         }
 
     }
