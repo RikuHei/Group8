@@ -14,11 +14,13 @@ public class WeaponScript : MonoBehaviour
     public AudioSource audioSource;
     public AudioListener audioListener;
     private AudioClip shootClip;
+    public Animator animator;
 
     void Start()
     {
         audioListener = GetComponent<AudioListener>();
         audioSource = gameObject.GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
     }
     // Update is called once per frame
     void Update()
@@ -40,7 +42,14 @@ public class WeaponScript : MonoBehaviour
         {
             Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
             PlayRandom();
+            animator.SetBool("isFiring", true);
+            Invoke("ResetFiring", 0.1f);
         }
+    }
+
+    void ResetFiring()
+    {
+        animator.SetBool("isFiring", false);
     }
 
     void PlayRandom()

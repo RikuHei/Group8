@@ -177,11 +177,14 @@ MonoBehaviour:
   aggroDuration: 2
   animator: {fileID: 0}
   aggroAudio:
-  - {fileID: 0}
-  audioSource: {fileID: 0}
-  deaggroClip: {fileID: 0}
+  - {fileID: 8300000, guid: 5ce7b74dc25e17147a8d6668a728f8bc, type: 3}
+  - {fileID: 8300000, guid: c6714a977e450bf4795aa220ee7f5043, type: 3}
+  - {fileID: 8300000, guid: bb45c7e3b2d700e4d98009a09a70a330, type: 3}
+  audioSource: {fileID: 3667746653492703410}
+  deaggroClip: {fileID: 8300000, guid: fd3e9877e831f7b44ad6f1288caf5640, type: 3}
   shoot:
-  - {fileID: 8300000, guid: e18c6803ff604fb489cd2c7963484696, type: 3}
+  - {fileID: 8300000, guid: 415f50752c3eeee45b6841de8f4ad08a, type: 3}
+  - {fileID: 8300000, guid: d49a4f68566647c44a6db4fb125224d7, type: 3}
 --- !u!114 &3667746653492703406
 MonoBehaviour:
   m_ObjectHideFlags: 0
