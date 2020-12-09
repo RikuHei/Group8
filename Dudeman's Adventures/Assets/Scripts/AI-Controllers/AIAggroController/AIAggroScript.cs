@@ -15,6 +15,7 @@ public class AIAggroScript : MonoBehaviour
     bool isFacingLeft = true; // checkbox for the dev when placing an AI if it is facing Left or not !!! VERY IMPORTANT !!!
     public float aggroDuration; // timer for how long the player will be aggroed
 
+    public int damage;
     Vector3 baseScale;
 
     Rigidbody2D rb2d;
@@ -212,7 +213,7 @@ public class AIAggroScript : MonoBehaviour
         {
             if (collision.transform.name == "Player")
             {
-                GameObject.Find("Player").GetComponent<RestartOnPlayerDeath>().TakeDamage(1);
+                GameObject.Find("Player").GetComponent<RestartOnPlayerDeath>().TakeDamage(damage);
             }
         }
     }

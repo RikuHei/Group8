@@ -250,6 +250,7 @@ MonoBehaviour:
   castPoint: {fileID: 7108614920821841540}
   isFacingLeft: 1
   aggroDuration: 4
+  damage: 1
   animator: {fileID: 0}
   aggroAudio:
   - {fileID: 8300000, guid: ca7aa0e9c3321f3418872272af5ee339, type: 3}
