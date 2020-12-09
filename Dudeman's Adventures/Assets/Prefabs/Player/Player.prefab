@@ -192,7 +192,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.13118356, y: 0.44630814}
+  m_Offset: {x: -0.16, y: 0.39}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -203,7 +203,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.69519365, y: 1.0869737}
+  m_Size: {x: 0.6, y: 1}
   m_EdgeRadius: 0
 --- !u!95 &1666359092522057857
 Animator:
@@ -237,9 +237,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.22200274, y: -0.13269114}
+  m_Offset: {x: -0.19, y: -0.378}
   serializedVersion: 2
-  m_Radius: 0.5068188
+  m_Radius: 0.34
 --- !u!114 &1666359092522057865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,8 +254,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 200
   currentHealth: 0
-  defaultImmunityTime: 0
-  immunityCooldownTime: 0
+  defaultImmunityTime: 1
+  immunityCooldownTime: 10
   damageImmunity: 0
   healthBar: {fileID: 0}
   animator: {fileID: 1666359092522057857}
@@ -383,7 +383,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e86e036c074ad42b37d05340bdca87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelManager: {fileID: 0}
   ResetScoreOnDeath: 0
   restartOnPlayerDeath: {fileID: 0}
 --- !u!1 &1666359093066831424
@@ -665,6 +664,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4de43e50242716a4c860125d8718518d, type: 3}
   audioSource: {fileID: 1666359093575056002}
   audioListener: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!82 &1666359093575056002
 AudioSource:
   m_ObjectHideFlags: 0
