@@ -13,7 +13,7 @@ public class Pause : MonoBehaviour
     void Update()
     {
 
-        if(Input.GetKeyDown(KeyCode.Escape)){
+        if(Input.GetKeyDown(KeyCode.Escape) && !RestartController.isDead){
             if(isPaused){
                 ResumeGame();
             }else{
@@ -39,12 +39,14 @@ public class Pause : MonoBehaviour
     public void LevelSelection()
     {
         Time.timeScale = 1f;
+        ResumeGame();
         SceneManager.LoadScene("LevelSelection");
     }
 
     public void Menu()
     {
         Time.timeScale = 1f;
+        ResumeGame();
         SceneManager.LoadScene("Menu");
     }
 }
