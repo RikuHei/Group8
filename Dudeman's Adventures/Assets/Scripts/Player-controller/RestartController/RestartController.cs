@@ -8,7 +8,7 @@ public class RestartController : MonoBehaviour
 
     Rigidbody2D rb;
     AudioSource audioSource;
-    public LevelManager levelManager;
+    private LevelManager levelManager;
     public static bool isDead = false;
     private ScoreManager scoreManager;
     [SerializeField] private bool ResetScoreOnDeath = false;
