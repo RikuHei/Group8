@@ -50,6 +50,7 @@ public class RestartOnPlayerDeath : MonoBehaviour
         }
         if (RestartController.isDead)
         {
+            healthBar.SetHealth(0);
             movementController.runSpeed = 0;
             characterController2D.m_JumpForce = 0;
             animator.SetBool("IsDead", true);
@@ -91,7 +92,6 @@ public class RestartOnPlayerDeath : MonoBehaviour
 
             if (currentHealth < 1)
             {
-                healthBar.SetHealth(0);
                 RestartController.isDead = true;
                 Die();
             }
