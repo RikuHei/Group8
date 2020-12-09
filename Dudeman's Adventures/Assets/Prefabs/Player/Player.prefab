@@ -256,7 +256,7 @@ MonoBehaviour:
   currentHealth: 0
   defaultImmunityTime: 1
   immunityCooldownTime: 10
-  damageImmunity: 0
+  damageImmunity: 1
   healthBar: {fileID: 0}
   animator: {fileID: 1666359092522057857}
   ResetScoreOnDeath: 0
