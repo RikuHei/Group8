@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9101094066970549282}
   - component: {fileID: 9101094066970549309}
   m_Layer: 0
-  m_Name: HP Power-up (1)
+  m_Name: HP Boost (FULL)
   m_TagString: Power-up
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9101094066970549308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.33, y: -1.53, z: 0}
+  m_LocalPosition: {x: 17.33, y: -1.53, z: -10}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
