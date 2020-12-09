@@ -54,9 +54,15 @@ public class RestartController : MonoBehaviour
     {
         // track player position whitout resetting the y axis value
         // if player fall below fallZone value (-30) game will restart
-        if (rb.transform.position.y < fallZone)
+        if (!isDead)
         {
-            restartOnPlayerDeath.Die();
+            if (rb.transform.position.y < fallZone)
+            {
+                isDead = true;
+                restartOnPlayerDeath.Die();
+                Debug.Log("Called resart from restart controller");
+            }
+
         }
 
     }
