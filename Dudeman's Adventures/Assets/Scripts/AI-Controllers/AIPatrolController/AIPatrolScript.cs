@@ -35,23 +35,23 @@ public class AIPatrolScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void FixedUpdate()
     {
         float vX = moveSpeed;
 
-        if(facingDirection == LEFT)
+        if (facingDirection == LEFT)
         {
             vX = -moveSpeed;
         }
 
         rb2d.velocity = new Vector2(vX, rb2d.velocity.y);
 
-        if(IsHittingWall() || IsNearEdge())
+        if (IsHittingWall() || IsNearEdge())
         {
-            if(facingDirection == LEFT)
+            if (facingDirection == LEFT)
             {
                 ChangeFacingDirection(RIGHT);
             }
@@ -66,7 +66,7 @@ public class AIPatrolScript : MonoBehaviour
     {
         Vector3 newScale = baseScale;
 
-        if(newDirection == LEFT)
+        if (newDirection == LEFT)
         {
             newScale.x = -baseScale.x;
         }
@@ -86,7 +86,7 @@ public class AIPatrolScript : MonoBehaviour
 
         float castDist = baseCastDist;
 
-        if(facingDirection == LEFT)
+        if (facingDirection == LEFT)
         {
             castDist = -baseCastDist;
         }
@@ -94,13 +94,13 @@ public class AIPatrolScript : MonoBehaviour
         {
             castDist = baseCastDist;
         }
-        
+
         Vector3 targetPos = castPos.position;
         targetPos.x += castDist;
 
         Debug.DrawLine(castPos.position, targetPos, Color.red);
 
-        if(Physics2D.Linecast(castPos.position, targetPos, 1 << LayerMask.NameToLayer("Terrain")))
+        if (Physics2D.Linecast(castPos.position, targetPos, 1 << LayerMask.NameToLayer("Terrain")))
         {
             val = true;
         }
@@ -118,13 +118,13 @@ public class AIPatrolScript : MonoBehaviour
         bool val = true;
 
         float castDist = baseCastDist;
-        
+
         Vector3 targetPos = castPos.position;
         targetPos.y -= castDist;
 
         Debug.DrawLine(castPos.position, targetPos, Color.blue);
 
-        if(Physics2D.Linecast(castPos.position, targetPos, 1 << LayerMask.NameToLayer("Terrain")))
+        if (Physics2D.Linecast(castPos.position, targetPos, 1 << LayerMask.NameToLayer("Terrain")))
         {
             val = false;
         }
@@ -136,13 +136,15 @@ public class AIPatrolScript : MonoBehaviour
         return val;
     }
 
-    
+
     void OnCollisionStay2D(Collision2D collision)
     {
-        if(collision.transform.name == "Player")
+        if (!RestartController.isDead)
         {
-             GameObject.Find("Player").GetComponent<RestartOnPlayerDeath>().TakeDamage(1);
+            if (collision.transform.name == "Player")
+            {
+                GameObject.Find("Player").GetComponent<RestartOnPlayerDeath>().TakeDamage(1);
+            }
         }
-
     }
 }

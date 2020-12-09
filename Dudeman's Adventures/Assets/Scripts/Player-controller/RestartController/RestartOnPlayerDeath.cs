@@ -27,6 +27,7 @@ public class RestartOnPlayerDeath : MonoBehaviour
     public LevelManager levelManager;
     public MovementController movementController;
     public CharacterController2D characterController2D;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +50,7 @@ public class RestartOnPlayerDeath : MonoBehaviour
         }
         if (RestartController.isDead)
         {
+            healthBar.SetHealth(0);
             movementController.runSpeed = 0;
             characterController2D.m_JumpForce = 0;
             animator.SetBool("IsDead", true);
@@ -90,6 +92,7 @@ public class RestartOnPlayerDeath : MonoBehaviour
 
             if (currentHealth < 1)
             {
+                RestartController.isDead = true;
                 Die();
             }
         }
@@ -97,9 +100,7 @@ public class RestartOnPlayerDeath : MonoBehaviour
 
     public void Die()
     {
-        healthBar.SetHealth(0);
-        RestartController.isDead = true;
-        Invoke("RestartSceneOnDeath", 2f);
+        Invoke("RestartSceneOnDeath", 1);
     }
 
     public void EnableDamageImmunity(float time, bool powerUp)

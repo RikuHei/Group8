@@ -36,23 +36,23 @@ public class AIAggroScript : MonoBehaviour
     {
         baseScale = transform.localScale;
         rb2d = GetComponent<Rigidbody2D>();
-        rb2d.gravityScale = 30f;   
-        animator = GetComponent<Animator>(); 
-        audioSource = gameObject.GetComponent<AudioSource>(); 
+        rb2d.gravityScale = 30f;
+        animator = GetComponent<Animator>();
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(DetectPlayer(aggroRange))
+        if (DetectPlayer(aggroRange))
         {
             isAggro = true;
         }
         else
         {
-            if(isAggro == true)
+            if (isAggro == true)
             {
-                if(isSearching == false)
+                if (isSearching == false)
                 {
                     isSearching = true;
                     Invoke("StopChasingPlayer", aggroDuration);
@@ -62,10 +62,10 @@ public class AIAggroScript : MonoBehaviour
 
         if (isAggro == true)
         {
-            ChasePlayer();    
+            ChasePlayer();
         }
 
-        if(isAggro == true && !audioSource.isPlaying && isAudioPlaying == false)
+        if (isAggro == true && !audioSource.isPlaying && isAudioPlaying == false)
         {
             isAudioPlaying = true;
             PlayRandomAggro();
@@ -73,17 +73,17 @@ public class AIAggroScript : MonoBehaviour
 
         // This code below is for a 'Dumber AI' that will chase the player even if they are
         // behind a wall. I am just leaving this here because don't know yet how we want to use the aggro mechanic.
-       /* float distToPlayer = Vector2.Distance(transform.position, player.position);
-        transform.Translate(0, 0, 0);
-        
-        if(distToPlayer < aggroRange)
-        {
-            ChasePlayer();
-        }
-        else
-        {
-            StopChasingPlayer();
-        }*/
+        /* float distToPlayer = Vector2.Distance(transform.position, player.position);
+         transform.Translate(0, 0, 0);
+
+         if(distToPlayer < aggroRange)
+         {
+             ChasePlayer();
+         }
+         else
+         {
+             StopChasingPlayer();
+         }*/
     }
 
     bool DetectPlayer(float distance)
@@ -94,7 +94,7 @@ public class AIAggroScript : MonoBehaviour
         int maskTerrain = 1 << LayerMask.NameToLayer("Terrain");
         int combinedMask = maskPlayer | maskTerrain;
 
-        if(isFacingLeft)
+        if (isFacingLeft)
         {
             castDist = -distance;
         }
@@ -103,20 +103,20 @@ public class AIAggroScript : MonoBehaviour
 
         RaycastHit2D hit = Physics2D.Linecast(castPoint.position, endPos, combinedMask);
 
-        if(hit.collider != null)
+        if (hit.collider != null)
         {
             if (hit.collider.gameObject.CompareTag("Player"))
             {
                 val = true;
             }
-            else 
+            else
             {
                 val = false;
             }
 
             Debug.DrawLine(castPoint.position, endPos, Color.blue);
         }
-        
+
         else
         {
             Debug.DrawLine(castPoint.position, endPos, Color.red);
@@ -131,8 +131,8 @@ public class AIAggroScript : MonoBehaviour
         Vector3 newScale = baseScale;
         animator.SetBool("isAggro", true);
 
-        
-        if(transform.position.x < player.position.x)
+
+        if (transform.position.x < player.position.x)
         {
             rb2d.velocity = new Vector2(moveSpeed, 0);
             newScale.x = -baseScale.x;
@@ -146,7 +146,7 @@ public class AIAggroScript : MonoBehaviour
             isFacingLeft = true;
             transform.localScale = newScale;
         }
-        
+
     }
 
     void StopChasingPlayer()
@@ -159,38 +159,40 @@ public class AIAggroScript : MonoBehaviour
         audioSource.clip = deaggroClip;
         audioSource.Play();
     }
-/*
-    bool IsNearEdge()
-    {
-        bool val = true;
-
-        float castDist = aggroRange;
-        
-        Vector3 targetPos = castPoint.position;
-        targetPos.y -= castDist;
-
-        Debug.DrawLine(castPoint.position, targetPos, Color.green);
-
-        if(Physics2D.Linecast(castPoint.position, targetPos, 1 << LayerMask.NameToLayer("Terrain")))
+    /*
+        bool IsNearEdge()
         {
-            val = false;
-        }
-        else
-        {
-            val = true;
-        }
+            bool val = true;
 
-        return val;
-    }
-*/
+            float castDist = aggroRange;
+
+            Vector3 targetPos = castPoint.position;
+            targetPos.y -= castDist;
+
+            Debug.DrawLine(castPoint.position, targetPos, Color.green);
+
+            if(Physics2D.Linecast(castPoint.position, targetPos, 1 << LayerMask.NameToLayer("Terrain")))
+            {
+                val = false;
+            }
+            else
+            {
+                val = true;
+            }
+
+            return val;
+        }
+    */
     //CollisionStay is used instead of Enter because of the zombie like nature of the mobs.
     void OnCollisionStay2D(Collision2D collision)
     {
-        if(collision.transform.name == "Player")
+        if (!RestartController.isDead)
         {
-             GameObject.Find("Player").GetComponent<RestartOnPlayerDeath>().TakeDamage(1);
+            if (collision.transform.name == "Player")
+            {
+                GameObject.Find("Player").GetComponent<RestartOnPlayerDeath>().TakeDamage(1);
+            }
         }
-
     }
 
     void PlayRandomAggro()
@@ -200,6 +202,6 @@ public class AIAggroScript : MonoBehaviour
         audioSource.clip = aggroClip;
         audioSource.Play();
     }
-    
+
 
 }

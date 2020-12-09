@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Teleport
   - Moveable
-  - GM
   - LevelManager
   - Power-up
   - Bullet
@@ -24,7 +23,7 @@ TagManager:
   - Enemy
   - Teleporter
   - Bullet
-  - 
+  - LevelManager
   - 
   - 
   - 
