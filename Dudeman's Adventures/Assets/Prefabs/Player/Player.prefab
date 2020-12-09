@@ -136,8 +136,6 @@ MonoBehaviour:
       m_Calls: []
   jump:
   - {fileID: 8300000, guid: 74418625cabb9d147b76378e49069e74, type: 3}
-  - {fileID: 8300000, guid: 61b8bcf3f66c49043a59f7c62eb5822a, type: 3}
-  - {fileID: 8300000, guid: 7f158ab5acb9143449f2b46759562f45, type: 3}
   - {fileID: 8300000, guid: b71b4fe5e64d5df4881aeefbff070f48, type: 3}
   - {fileID: 8300000, guid: 4e4357a1f5bd53842abfd126dc4ac61b, type: 3}
   audioSource: {fileID: 1666359092522057862}
