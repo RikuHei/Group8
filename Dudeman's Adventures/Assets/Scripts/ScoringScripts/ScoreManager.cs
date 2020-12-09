@@ -22,13 +22,7 @@ public class ScoreManager : MonoBehaviour
         levelName = SceneManager.GetActiveScene().name;
         savedScoreName = levelName + "SavedScore";
         highScoreName = levelName + "HighScore";
-
-        if(PlayerPrefs.HasKey(savedScoreName) == true)
-        {
-            savedScore = PlayerPrefs.GetFloat(savedScoreName);
-            scoreTime = savedScore;
-            PlayerPrefs.DeleteKey(savedScoreName);
-        }
+        
         textBox.text = scoreTime.ToString();
     }
 
