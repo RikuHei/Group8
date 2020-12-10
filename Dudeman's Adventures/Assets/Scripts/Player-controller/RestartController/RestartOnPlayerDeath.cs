@@ -55,6 +55,10 @@ public class RestartOnPlayerDeath : MonoBehaviour
             characterController2D.m_JumpForce = 0;
             animator.SetBool("IsDead", true);
         }
+        /*if (!immunityOnCooldown)
+        {
+            damageImmunity = false;
+        }*/
     }
 
     public void RestartSceneOnDeath()
@@ -81,22 +85,24 @@ public class RestartOnPlayerDeath : MonoBehaviour
     }
 
     public void TakeDamage(int damage)
-    {
-        if (!damageImmunity && !immunityOnCooldown)
         {
-            currentHealth -= damage;
-            healthBar.SetHealth(currentHealth);
-
-            immunityFromPowerUp = false;
-            EnableDamageImmunity(defaultImmunityTime, immunityFromPowerUp);
-
-            if (currentHealth < 1)
+            if (!damageImmunity)
             {
-                RestartController.isDead = true;
-                Die();
+                currentHealth -= damage;
+                healthBar.SetHealth(currentHealth);
+
+                if (currentHealth < 1)
+                {
+                    RestartController.isDead = true;
+                    Die();
+                }
+            }
+            if(!immunityOnCooldown)
+            {
+                immunityFromPowerUp = false;
+                EnableDamageImmunity(defaultImmunityTime, immunityFromPowerUp);
             }
         }
-    }
 
     public void Die()
     {
@@ -129,7 +135,9 @@ public class RestartOnPlayerDeath : MonoBehaviour
     public IEnumerator ImmunityTimer(float time)
     {
         immunityTimerIsRunning = true;
+        Debug.Log("test1");
         yield return new WaitForSeconds(time);
+        Debug.Log("test2");
         damageImmunity = false;
         immunityTimerIsRunning = false;
         cooldownRoutine = StartCoroutine(CooldownTimer(immunityCooldownTime));
@@ -138,7 +146,9 @@ public class RestartOnPlayerDeath : MonoBehaviour
     public IEnumerator CooldownTimer(float time)
     {
         immunityOnCooldown = true;
+        Debug.Log("test3");
         yield return new WaitForSeconds(time);
+        Debug.Log("test4");
         immunityOnCooldown = false;
     }
 }

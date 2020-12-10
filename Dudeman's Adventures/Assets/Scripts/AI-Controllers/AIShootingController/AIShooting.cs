@@ -103,12 +103,14 @@ public class AIShooting : MonoBehaviour
         }
 
         Vector2 endPos = ShootPoint.position + Vector3.right * castDist;
+        Vector2 endPos2 = ShootPoint.position + Vector3.left * castDist;
 
         RaycastHit2D hit = Physics2D.Linecast(ShootPoint.position, endPos, combinedMask);
+        RaycastHit2D hit2 = Physics2D.Linecast(ShootPoint.position, endPos2, combinedMask);
 
         if(hit.collider != null)
         {
-            if (hit.collider.gameObject.CompareTag("Player"))
+            if (hit.collider.gameObject.CompareTag("Player") || hit2.collider.gameObject.CompareTag("Player"))
             {
                 val = true;
             }
@@ -120,9 +122,24 @@ public class AIShooting : MonoBehaviour
             Debug.DrawLine(ShootPoint.position, endPos, Color.blue);
         }
         
+        if(hit2.collider != null)
+        {
+            if (hit2.collider.gameObject.CompareTag("Player"))
+            {
+                val = true;
+            }
+            else 
+            {
+                val = false;
+            }
+
+            Debug.DrawLine(ShootPoint.position, endPos2, Color.blue);
+        }
+
         else
         {
             Debug.DrawLine(ShootPoint.position, endPos, Color.red);
+            Debug.DrawLine(ShootPoint.position, endPos2, Color.red);
         }
 
         return val;
@@ -165,8 +182,8 @@ public class AIShooting : MonoBehaviour
         isAggro = false;
         isSearching = false;
         rb2d.velocity = new Vector2(0, 0);
-        audioSource.clip = deaggroClip;
-        audioSource.Play();
+        /*audioSource.clip = deaggroClip;
+        audioSource.Play();*/
     }
 
     void PlayRandomAggro()
