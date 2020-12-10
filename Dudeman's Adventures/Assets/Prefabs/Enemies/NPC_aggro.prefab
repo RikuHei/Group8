@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 300
-  itemSpawnChance: 10
+  itemSpawnChance: 0.1
   spawnableItem: {fileID: 4623506492369082167, guid: 31a54a76221c21141b295f487e8ce381,
     type: 3}
   animator: {fileID: 7108614921483630412}
