@@ -15,6 +15,7 @@ public class AIAggroScript : MonoBehaviour
     bool isFacingLeft = true; // checkbox for the dev when placing an AI if it is facing Left or not !!! VERY IMPORTANT !!!
     public float aggroDuration; // timer for how long the player will be aggroed
 
+    public int damage;
     Vector3 baseScale;
 
     Rigidbody2D rb2d;
@@ -100,8 +101,10 @@ public class AIAggroScript : MonoBehaviour
         }
 
         Vector2 endPos = castPoint.position + Vector3.right * castDist;
+        Vector2 endPos2 = castPoint.position + Vector3.left * castDist;
 
         RaycastHit2D hit = Physics2D.Linecast(castPoint.position, endPos, combinedMask);
+        RaycastHit2D hit2 = Physics2D.Linecast(castPoint.position, endPos2, combinedMask);
 
         if (hit.collider != null)
         {
@@ -120,6 +123,26 @@ public class AIAggroScript : MonoBehaviour
         else
         {
             Debug.DrawLine(castPoint.position, endPos, Color.red);
+        }
+
+        if (hit2.collider != null)
+        {
+            if (hit2.collider.gameObject.CompareTag("Player"))
+            {
+                val = true;
+            }
+            else
+            {
+                val = false;
+            }
+
+            Debug.DrawLine(castPoint.position, endPos2, Color.blue);
+        }
+
+        else
+        {
+            Debug.DrawLine(castPoint.position, endPos, Color.red);
+            Debug.DrawLine(castPoint.position, endPos2, Color.red);
         }
 
         return val;
@@ -156,8 +179,8 @@ public class AIAggroScript : MonoBehaviour
         isAggro = false;
         isSearching = false;
         rb2d.velocity = new Vector2(0, 0);
-        audioSource.clip = deaggroClip;
-        audioSource.Play();
+       /* audioSource.clip = deaggroClip;
+        audioSource.Play();*/
     }
     /*
         bool IsNearEdge()
@@ -190,7 +213,7 @@ public class AIAggroScript : MonoBehaviour
         {
             if (collision.transform.name == "Player")
             {
-                GameObject.Find("Player").GetComponent<RestartOnPlayerDeath>().TakeDamage(1);
+                GameObject.Find("Player").GetComponent<RestartOnPlayerDeath>().TakeDamage(damage);
             }
         }
     }
