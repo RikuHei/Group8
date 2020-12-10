@@ -339,6 +339,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pressure Plate
       objectReference: {fileID: 0}
+    - target: {fileID: 2182541874942792038, guid: e5db6f7951e220c43a51c888783790b6,
+        type: 3}
+      propertyPath: pressurePlateTimer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2182541874942792038, guid: e5db6f7951e220c43a51c888783790b6,
+        type: 3}
+      propertyPath: timeUntilReset
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5db6f7951e220c43a51c888783790b6, type: 3}
 --- !u!1001 &503856479
