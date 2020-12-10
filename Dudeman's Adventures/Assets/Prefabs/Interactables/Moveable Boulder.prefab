@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7139919500394519570}
   - component: {fileID: 7139919500394519571}
   - component: {fileID: 7139919500394519575}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Moveable Boulder
   m_TagString: Moveable
   m_Icon: {fileID: 0}
