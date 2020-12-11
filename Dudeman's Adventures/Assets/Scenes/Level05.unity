@@ -258,7 +258,6 @@ GameObject:
   - component: {fileID: 381634598}
   - component: {fileID: 381634597}
   - component: {fileID: 381634596}
-  - component: {fileID: 381634600}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
@@ -460,19 +459,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &381634600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 381634594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a155ab77706e3b4f899b9b6e2b189f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waitTime: 0
 --- !u!114 &601609669 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2579129025300589509, guid: 952727133ba79c04cbac08948c3e6796,
@@ -2313,6 +2299,11 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 1958495037}
+    - target: {fileID: 1666359093575056030, guid: 6de3fcfcb87d0b741b3b3fe7149c7f39,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6de3fcfcb87d0b741b3b3fe7149c7f39, type: 3}
 --- !u!1 &1798625933
@@ -2332,6 +2323,7 @@ GameObject:
   - component: {fileID: 1798625940}
   - component: {fileID: 1798625941}
   - component: {fileID: 1798625942}
+  - component: {fileID: 1798625944}
   - component: {fileID: 1798625943}
   m_Layer: 10
   m_Name: Boss
@@ -2615,7 +2607,7 @@ MonoBehaviour:
   itemSpawnChance: 0
   spawnableItem: {fileID: 0}
   animator: {fileID: 1798625936}
-  damageTakenAudio: {fileID: 0}
+  damageTakenAudio: {fileID: 8300000, guid: 153b656a2a626d043b847f9e796a5f3d, type: 3}
   audio: {fileID: 1798625941}
 --- !u!114 &1798625943
 MonoBehaviour:
@@ -2626,26 +2618,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 1798625933}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d21a7ac9039de4b45b6b4f5ebfb5a955, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a484c115b1b0444fb1964be6068e0d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  startTimeBtwShots: 0.1
-  player: {fileID: 0}
-  AIBulletController: {fileID: 1379895190743700749, guid: f9b8a7ff2240aa340b5c14681ebd458e,
-    type: 3}
-  ShootPoint: {fileID: 1653138178}
-  Muzzle: {fileID: 119056794}
-  aggroRange: 10
-  isFacingLeft: 1
-  aggroDuration: 20
-  animator: {fileID: 0}
-  aggroAudio:
-  - {fileID: 8300000, guid: e3efde712f0a3f14d9a08d15f42d4989, type: 3}
-  audioSource: {fileID: 1798625941}
-  deaggroClip: {fileID: 0}
-  shoot:
-  - {fileID: 8300000, guid: a00bf102ba6938441adcfb7ac6106368, type: 3}
+  attackDamage: 20
+  enrageAttackDamage: 40
+  attackOffset: {x: 0, y: 0, z: 0}
+  attackRange: 1
+  attackMask:
+    serializedVersion: 2
+    m_Bits: 256
+--- !u!114 &1798625944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798625933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a0639f810e1f254aac7b33d862717aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 11783411}
+  isFlipped: 0
 --- !u!1 &1958495032 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1666359093575056030, guid: 6de3fcfcb87d0b741b3b3fe7149c7f39,
