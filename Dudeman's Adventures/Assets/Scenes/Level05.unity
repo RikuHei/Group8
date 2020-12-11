@@ -406,15 +406,60 @@ Tilemap:
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
+  - first: {x: -7, y: -4, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741825
+  - first: {x: -6, y: -4, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741825
+  - first: {x: -5, y: -4, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741825
+  - first: {x: -4, y: -4, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741825
+  - first: {x: -3, y: -4, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 4
+  - m_RefCount: 9
     m_Data: {fileID: 11400000, guid: 0c7ad351e67d454449466b90e0faf061, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 4
+  - m_RefCount: 9
     m_Data: {fileID: 21300000, guid: aef71c7747041554e8bb5dcbb264e546, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 4
+  - m_RefCount: 9
     m_Data:
       e00: 1
       e01: 0
@@ -433,13 +478,13 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 4
+  - m_RefCount: 9
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -11, y: -4, z: 0}
-  m_Size: {x: 11, y: 4, z: 1}
+  m_Size: {x: 31, y: 4, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -622,7 +667,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1128289499
 Transform:
   m_ObjectHideFlags: 0
@@ -2322,9 +2367,9 @@ GameObject:
   - component: {fileID: 1798625939}
   - component: {fileID: 1798625940}
   - component: {fileID: 1798625941}
-  - component: {fileID: 1798625942}
   - component: {fileID: 1798625944}
   - component: {fileID: 1798625943}
+  - component: {fileID: 1798625945}
   m_Layer: 10
   m_Name: Boss
   m_TagString: Untagged
@@ -2437,7 +2482,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 50
-  m_Sprite: {fileID: 21300000, guid: 1bb2a00345bd56b438fb25f97f035da2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 68ef77c359d73354d8f1d3c3e767996c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2591,24 +2636,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1798625942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1798625933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3165a56a951916e4fa2a3fe74dafb92f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 2000
-  itemSpawnChance: 0
-  spawnableItem: {fileID: 0}
-  animator: {fileID: 1798625936}
-  damageTakenAudio: {fileID: 8300000, guid: 153b656a2a626d043b847f9e796a5f3d, type: 3}
-  audio: {fileID: 1798625941}
 --- !u!114 &1798625943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2622,9 +2649,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 20
-  enrageAttackDamage: 40
+  enragedAttackDamage: 40
   attackOffset: {x: 0, y: 0, z: 0}
-  attackRange: 1
+  attackRange: 3
   attackMask:
     serializedVersion: 2
     m_Bits: 256
@@ -2642,6 +2669,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 11783411}
   isFlipped: 0
+--- !u!114 &1798625945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798625933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67d66dcdbc4ef9c4ea36d0061e63ae4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 700
+  isInvulnerable: 0
 --- !u!1 &1958495032 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1666359093575056030, guid: 6de3fcfcb87d0b741b3b3fe7149c7f39,
