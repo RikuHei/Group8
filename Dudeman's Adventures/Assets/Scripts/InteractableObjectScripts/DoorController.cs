@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
+    public bool reversedDoor = false;
 
     //Fields for choosing interactables that are used to open the door (drag'n'drop)
     [SerializeField] GameObject[] pressurePlates;
@@ -82,13 +83,27 @@ public class DoorController : MonoBehaviour
         GetNOPlates();
         GetNOLevers();
 
-        if(notActivatedPlates <= 0 && notActivatedLevers <= 0)
+        if(reversedDoor)
         {
-            OpenDoor();
+            if(notActivatedPlates <= 0 && notActivatedLevers <= 0)
+            {
+                CloseDoor();
+            }
+            else
+            {
+                OpenDoor();
+            }
         }
         else
         {
-            CloseDoor();
+            if(notActivatedPlates <= 0 && notActivatedLevers <= 0)
+            {
+                OpenDoor();
+            }
+            else
+            {
+                CloseDoor();
+            }
         }
     }
 }
