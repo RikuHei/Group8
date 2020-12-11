@@ -254,7 +254,7 @@ MonoBehaviour:
   currentHealth: 0
   defaultImmunityTime: 1
   immunityCooldownTime: 10
-  damageImmunity: 1
+  damageImmunity: 0
   healthBar: {fileID: 0}
   animator: {fileID: 1666359092522057857}
   ResetScoreOnDeath: 0
@@ -655,7 +655,7 @@ MonoBehaviour:
   shootPoint: {fileID: 1666359093383247106}
   bulletPrefab: {fileID: 5484722262096234696, guid: dedc9d55fabdb2c40b8adc31811a5be0,
     type: 3}
-  fireRate: 20
+  fireRate: 10
   shoot:
   - {fileID: 8300000, guid: e18c6803ff604fb489cd2c7963484696, type: 3}
   - {fileID: 8300000, guid: a00bf102ba6938441adcfb7ac6106368, type: 3}
