@@ -110,7 +110,7 @@ public class AIShooting : MonoBehaviour
 
         if(hit.collider != null)
         {
-            if (hit.collider.gameObject.CompareTag("Player") || hit2.collider.gameObject.CompareTag("Player"))
+            if (hit.collider.gameObject.CompareTag("Player"))
             {
                 val = true;
             }
