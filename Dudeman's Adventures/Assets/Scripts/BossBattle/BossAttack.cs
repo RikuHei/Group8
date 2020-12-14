@@ -35,7 +35,7 @@ public class BossAttack : StateMachineBehaviour
         Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
         rb.MovePosition(newPos);
 
-        // if boss is cloes engouh to player, he will attack
+        // if player is not in attack range, boss goes back to running animation
         if (Vector2.Distance(player.position, rb.position) >= attackRange)
         {
             animator.SetBool("IsInRange", false);

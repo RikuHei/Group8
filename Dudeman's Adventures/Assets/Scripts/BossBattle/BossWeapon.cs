@@ -4,26 +4,32 @@ using UnityEngine;
 
 public class BossWeapon : MonoBehaviour
 {
+
+    private float timeBtwShots;
+    public float startTimeBtwShots;
+
+    public Transform player;
+    public GameObject AIBulletController;
+    public Transform ShootPoint;
+    public Transform Muzzle;
+
     public int attackDamage = 20;
     public int enragedAttackDamage = 200;
 
     public Vector3 attackOffset;
     public float attackRange = 3f;
-    private float enrageAttackRange = 1f;
+    private float enrageAttackRange = 2f;
     public LayerMask attackMask;
+
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        timeBtwShots = startTimeBtwShots;
+    }
 
     public void Attack()
     {
-        // collision based damage taken, will need to refactor to use bullet hit to trigger damage taken.
-        Vector3 pos = transform.position;
-        pos += transform.right * attackOffset.x;
-        pos += transform.up * attackOffset.y;
-
-        Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
-        if (colInfo != null)
-        {
-            colInfo.GetComponent<RestartOnPlayerDeath>().TakeDamage(attackDamage);
-        }
+        Shoot();
     }
 
     public void EnragedAttack()
@@ -36,5 +42,12 @@ public class BossWeapon : MonoBehaviour
         {
             colInfo.GetComponent<RestartOnPlayerDeath>().TakeDamage(enragedAttackDamage);
         }
+    }
+
+    void Shoot()
+    {
+        Instantiate(AIBulletController, Muzzle.position, Quaternion.identity);
+        timeBtwShots = startTimeBtwShots * Time.fixedDeltaTime;
+        // PlayRandomShoot();
     }
 }
