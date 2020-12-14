@@ -16,7 +16,7 @@ public class HighScoreScript : MonoBehaviour
             if(PlayerPrefs.HasKey("Level0" + (i + 1) + "HighScore") == true)
             {
                 float highScore = PlayerPrefs.GetFloat("Level0" + (i + 1) + "HighScore");
-                if(highScore > 999.99)
+                if(highScore > 99.99)
                 {
                     highScoreFields[i].fontSize = 20;
                 }

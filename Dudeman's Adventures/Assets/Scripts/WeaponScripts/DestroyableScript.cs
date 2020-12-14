@@ -34,8 +34,16 @@ public class DestroyableScript : MonoBehaviour
         health -= damage;
         animator.SetBool("hit", true);
 
+
+        if(audio)
+        {
         audio.clip = damageTakenAudio;
         audio.Play();
+        }
+        else if (!audio)
+        {
+            ///
+        }
 
 
         if(animator != null)
