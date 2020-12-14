@@ -126953,6 +126953,11 @@ PrefabInstance:
       propertyPath: aggroRange
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 3667746653492703405, guid: 6b37620ca73d387478fdd3cd3bc66545,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3667746653492703406, guid: 6b37620ca73d387478fdd3cd3bc66545,
         type: 3}
       propertyPath: health
