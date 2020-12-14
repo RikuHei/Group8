@@ -261,6 +261,16 @@ MonoBehaviour:
   levelManager: {fileID: 0}
   movementController: {fileID: 0}
   characterController2D: {fileID: 0}
+  audioAudio:
+  - {fileID: 8300000, guid: 4e4766f2515080e429c98b7729fff861, type: 3}
+  - {fileID: 8300000, guid: 044242d6c540c434da9218535733b5af, type: 3}
+  - {fileID: 8300000, guid: 98fffc86b8dd5e94aaf85db27b13603b, type: 3}
+  - {fileID: 8300000, guid: 76e67a9b74e37e34cbf81f69c52cc254, type: 3}
+  - {fileID: 8300000, guid: f62102badf98ac4478f8c3a1a370eeac, type: 3}
+  audioSource: {fileID: 1666359092522057862}
+  hitAudio:
+  - {fileID: 8300000, guid: 25df2233d61d6ba4b9e75f721ac878f3, type: 3}
+  - {fileID: 8300000, guid: 2fce78d005fd09345bc115c631fa0360, type: 3}
 --- !u!82 &1666359092522057862
 AudioSource:
   m_ObjectHideFlags: 0
