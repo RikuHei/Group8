@@ -15,6 +15,11 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("HighScores");
     }
 
+    public void HelpScene()
+    {
+        SceneManager.LoadScene("HelpScene");
+    }
+
     public void QuitGame()
     {
         Debug.Log("QUIT was pressed");
