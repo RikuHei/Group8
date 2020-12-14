@@ -46,7 +46,7 @@ public class RestartOnPlayerDeath : MonoBehaviour
         //Pressing Space makes the player take 1 damage.
         if (Input.GetKeyDown(KeyCode.F))
         {
-            TakeDamage(1);
+            //play dudeman sounds here
         }
         if (RestartController.isDead)
         {
