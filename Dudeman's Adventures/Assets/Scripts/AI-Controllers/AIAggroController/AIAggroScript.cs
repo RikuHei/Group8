@@ -120,11 +120,6 @@ public class AIAggroScript : MonoBehaviour
             Debug.DrawLine(castPoint.position, endPos, Color.blue);
         }
 
-        else
-        {
-            Debug.DrawLine(castPoint.position, endPos, Color.red);
-        }
-
         if (hit2.collider != null)
         {
             if (hit2.collider.gameObject.CompareTag("Player"))
