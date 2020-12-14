@@ -9,10 +9,8 @@ public class BossEnrage : StateMachineBehaviour
     Rigidbody2D rb;
     Boss boss;
 
-    // get boss gameObj
+    // boss gameObj & transform
     private GameObject bossGameObj;
-
-    // bossTransform variable to cast bossGameObj.transform into it
     public Transform bossTrasnform;
 
     // bool to know wich way boss is moving
@@ -56,13 +54,12 @@ public class BossEnrage : StateMachineBehaviour
         // set castpoint obj into transform
         castPointObj = GameObject.Find("Castpoint");
         castPoint = castPointObj.transform;
-
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
+        
         // hitting wall bool to check if boss hit the wall and should turn
         hittingWall = Physics2D.OverlapCircle(wallTransform.position, wallCheckRadius, whatIsWall);
 
