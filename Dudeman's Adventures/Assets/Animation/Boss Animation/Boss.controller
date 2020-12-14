@@ -244,19 +244,19 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IsEnraged
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IsDead
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -284,6 +284,7 @@ AnimatorState:
   - {fileID: -9032422686817154011}
   m_StateMachineBehaviours:
   - {fileID: 2212417427464193125}
+  - {fileID: 6612033944239020165}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -485,6 +486,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12a6ac3f4ceef7f46902d4985f22bd52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6612033944239020165
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 534efe31989fb64448b281e170548c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gdTransform: {fileID: 0}
+  speed: 16
 --- !u!114 &7461802018986775180
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -498,4 +513,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
-  attackRange: 3
+  attackRange: 5
