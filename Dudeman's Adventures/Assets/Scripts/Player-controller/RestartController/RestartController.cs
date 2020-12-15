@@ -40,12 +40,15 @@ public class RestartController : MonoBehaviour
         Debug.Log("Game restarted");
     }
 
-    // Hard restart scene with key "R"
+    // Hard restart scene with key "O" + "CTRL"
     void OnGUI()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKey(KeyCode.LeftControl))
         {
-            RestartScene();
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                RestartScene();
+            }
         }
     }
 
