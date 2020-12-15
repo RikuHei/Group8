@@ -9,9 +9,15 @@ public class BossAggro : StateMachineBehaviour
     GameObject castPointObj;
     Transform castPoint;
 
+    // get boss script
+    Boss boss;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        // get boss script
+        boss = animator.GetComponent<Boss>();
+
         // set castpoint obj into transform
         castPointObj = GameObject.Find("Castpoint");
         castPoint = castPointObj.transform;
@@ -36,6 +42,7 @@ public class BossAggro : StateMachineBehaviour
         {
             if (hit.collider.gameObject.CompareTag("Player"))
             {
+                boss.PlayAggro();
                 animator.SetBool("Aggro", true);
             }
         }
