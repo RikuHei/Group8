@@ -9,6 +9,14 @@ public class Boss : MonoBehaviour
 
     public static bool isFlipped = false;
 
+    public AudioSource audioSource;
+    public AudioClip deathAudio;
+    public AudioClip deadAudio;
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     public void LookAtPlayer()
     {
         Vector3 flipped = transform.localScale;
@@ -28,4 +36,15 @@ public class Boss : MonoBehaviour
         }
     }
 
+    public void PlayDeathSound()
+    {
+        audioSource.clip = deathAudio;
+        audioSource.Play();
+    }
+
+    public void DeadAudio()
+    {
+        audioSource.clip = deadAudio;
+        audioSource.Play();
+    }
 }
