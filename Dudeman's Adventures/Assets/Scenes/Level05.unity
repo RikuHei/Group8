@@ -2642,9 +2642,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a484c115b1b0444fb1964be6068e0d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTimeBtwShots: 0.1
+  startTimeBtwShots: 0.2
   player: {fileID: 1998164902}
-  AIBulletController: {fileID: 1379895190743700749, guid: f9b8a7ff2240aa340b5c14681ebd458e,
+  AIBulletController: {fileID: 4097141887214074517, guid: 38a0a29a314335a49985e6ac5fac5745,
     type: 3}
   ShootPoint: {fileID: 231127466}
   Muzzle: {fileID: 1487964134}
@@ -2680,7 +2680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d66dcdbc4ef9c4ea36d0061e63ae4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 200
+  health: 1000
   isInvulnerable: 0
 --- !u!4 &1998164902 stripped
 Transform:
