@@ -28,6 +28,12 @@ public class RestartOnPlayerDeath : MonoBehaviour
     public MovementController movementController;
     public CharacterController2D characterController2D;
 
+    public AudioClip[] audioAudio;
+    private AudioClip audioClip;
+    public AudioSource audioSource;
+    public AudioClip[] hitAudio;
+    private AudioClip hitClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +44,7 @@ public class RestartOnPlayerDeath : MonoBehaviour
         levelManager = FindObjectOfType<LevelManager>();
         movementController = FindObjectOfType<MovementController>();
         characterController2D = FindObjectOfType<CharacterController2D>();
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -46,7 +53,7 @@ public class RestartOnPlayerDeath : MonoBehaviour
         //Pressing Space makes the player take 1 damage.
         if (Input.GetKeyDown(KeyCode.F))
         {
-            TakeDamage(1);
+            PlayRandomAudio();
         }
         if (RestartController.isDead)
         {
@@ -95,6 +102,7 @@ public class RestartOnPlayerDeath : MonoBehaviour
                 {
                     RestartController.isDead = true;
                     Die();
+                    PlayRandomHit();
                 }
             }
             if(!immunityOnCooldown)
@@ -150,6 +158,22 @@ public class RestartOnPlayerDeath : MonoBehaviour
         yield return new WaitForSeconds(time);
         Debug.Log("test4");
         immunityOnCooldown = false;
+    }
+
+    void PlayRandomAudio()
+    {
+        int index = Random.Range(0, audioAudio.Length);
+        audioClip = audioAudio[index];
+        audioSource.clip = audioClip;
+        audioSource.Play();
+    }
+
+    void PlayRandomHit()
+    {
+        int index = Random.Range(0, hitAudio.Length);
+        hitClip = hitAudio[index];
+        audioSource.clip = hitClip;
+        audioSource.Play();
     }
 }
 
