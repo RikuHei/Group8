@@ -21,6 +21,9 @@ public class PowerUpController : MonoBehaviour
     private RestartOnPlayerDeath playerDamageController;
     private WeaponScript weaponController;
 
+    public AudioClip audioClip;
+    public AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +32,7 @@ public class PowerUpController : MonoBehaviour
         weaponController = FindObjectOfType<WeaponScript>();
         normalJumpForce = characterController.m_JumpForce;
         normalFireRate = weaponController.fireRate;
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -69,6 +73,7 @@ public class PowerUpController : MonoBehaviour
         {
             if(jumpBoostEnabled)
             {
+                audioSource.PlayOneShot(audioClip);
                 characterController.m_JumpForce = normalJumpForce;
 
                 jumpBoostEnabled = true;
@@ -79,6 +84,7 @@ public class PowerUpController : MonoBehaviour
             }
             else
             {
+                audioSource.PlayOneShot(audioClip);
                 jumpBoostEnabled = true;
                 jumpBoostForce = force;
                 jumpBoostTime = time;
@@ -89,6 +95,7 @@ public class PowerUpController : MonoBehaviour
 
         if(name == "immunity")
         {
+            audioSource.PlayOneShot(audioClip);
             damageImmunityCheck = true;
             immunityTime = time;
         }
@@ -101,6 +108,7 @@ public class PowerUpController : MonoBehaviour
 
             if(fireRateBoostEnabled)
             {
+                audioSource.PlayOneShot(audioClip);
                 weaponController.fireRate = normalFireRate;
 
                 fireRateBoostEnabled = true;
@@ -111,6 +119,7 @@ public class PowerUpController : MonoBehaviour
             }
             else
             {
+                audioSource.PlayOneShot(audioClip);
                 fireRateBoostEnabled = true;
                 fireRateBoost = force;
                 fireRateBoostTime = time;
