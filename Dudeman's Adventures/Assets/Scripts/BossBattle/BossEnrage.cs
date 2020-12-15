@@ -89,11 +89,11 @@ public class BossEnrage : StateMachineBehaviour
         {
             if (hit.collider.gameObject.CompareTag("Player"))
             {
-                speed = 46f;
+                speed = 30f;
             }
             else
             {
-                speed = 16f;
+                speed = 20f;
             }
         }
 
