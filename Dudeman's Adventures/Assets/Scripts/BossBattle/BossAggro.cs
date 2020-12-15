@@ -27,7 +27,7 @@ public class BossAggro : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         // cast point distance
-        float castDist = 20f;
+        float castDist = 30f;
 
         // borrowed some code from AI aggro to make the boss gain movement speed
         // when player is in x range from him
