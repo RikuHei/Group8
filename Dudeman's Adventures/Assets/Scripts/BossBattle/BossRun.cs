@@ -37,10 +37,14 @@ public class BossRun : StateMachineBehaviour
         rb.MovePosition(newPos);
 
         // if boss is cloes engouh to player, he will attack
-        if (Vector2.Distance(player.position, rb.position) <= attackRange)
+        if (player.position.y < -0.7)
         {
-            animator.SetBool("IsInRange", true);
+            if (Vector2.Distance(player.position, rb.position) <= attackRange)
+            {
+                animator.SetBool("IsInRange", true);
+            }
         }
+
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
