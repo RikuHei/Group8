@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossHealth : MonoBehaviour
 {
 
-    public int health = 1000;
+    public int health = 1550;
 
     public bool isInvulnerable = false;
 
@@ -16,7 +16,7 @@ public class BossHealth : MonoBehaviour
             return;
         }
 
-        if (health <= 200)
+        if (health <= 750)
         {
             GetComponent<Animator>().SetBool("IsEnraged", true);
         }
