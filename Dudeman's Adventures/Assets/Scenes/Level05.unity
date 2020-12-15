@@ -4267,6 +4267,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1998164902}
+  audioSource: {fileID: 1798625941}
+  deathAudio: {fileID: 8300000, guid: 3a1c0ec80ac4bfd468c3dd934f4b528c, type: 3}
+  deadAudio: {fileID: 8300000, guid: b41ad62422a63f34da11eebf306a3be5, type: 3}
 --- !u!114 &1798625945
 MonoBehaviour:
   m_ObjectHideFlags: 0
