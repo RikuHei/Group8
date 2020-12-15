@@ -92,6 +92,8 @@ public class RestartOnPlayerDeath : MonoBehaviour
     }
 
     public void TakeDamage(int damage)
+    {
+        if (SceneManager.GetActiveScene().buildIndex != 6)
         {
             if (!damageImmunity)
             {
@@ -105,16 +107,58 @@ public class RestartOnPlayerDeath : MonoBehaviour
                     PlayRandomHit();
                 }
             }
-            if(!immunityOnCooldown)
+            if (!immunityOnCooldown)
             {
                 immunityFromPowerUp = false;
                 EnableDamageImmunity(defaultImmunityTime, immunityFromPowerUp);
             }
         }
+        else
+        {
+            if (!damageImmunity)
+            {
+                currentHealth -= damage;
+                healthBar.SetHealth(currentHealth);
+
+                if (currentHealth < 1)
+                {
+                    RestartController.isDead = true;
+                    Invoke("DieInBossScene", 1);
+                    PlayRandomHit();
+                }
+            }
+            if (!immunityOnCooldown)
+            {
+                immunityFromPowerUp = false;
+                EnableDamageImmunity(defaultImmunityTime, immunityFromPowerUp);
+            }
+        }
+    }
 
     public void Die()
     {
         Invoke("RestartSceneOnDeath", 1);
+    }
+
+    void DieInBossScene()
+    {
+        // set isDead state
+        RestartController.isDead = false;
+
+        // restore movement speed, jumpforce and return to idle animation
+        movementController.runSpeed = 50;
+        characterController2D.m_JumpForce = 70;
+        animator.SetBool("IsDead", false);
+
+        // set player hp back to max
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+
+        if (!ResetScoreOnDeath)
+        {
+            scoreManager.SaveScoreOnDeath();
+        }
+        SceneManager.LoadScene("Level05");
     }
 
     public void EnableDamageImmunity(float time, bool powerUp)
