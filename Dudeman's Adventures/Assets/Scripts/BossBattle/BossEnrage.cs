@@ -59,7 +59,7 @@ public class BossEnrage : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+
         // hitting wall bool to check if boss hit the wall and should turn
         hittingWall = Physics2D.OverlapCircle(wallTransform.position, wallCheckRadius, whatIsWall);
 
@@ -121,7 +121,18 @@ public class BossEnrage : StateMachineBehaviour
         }
         else if (rb.velocity.x < 0)
         {
-            bossTrasnform.localScale = new Vector3(1.3f, 1.3f, 1f);
+            if (bossTrasnform.eulerAngles.y != 0)
+            {
+                Vector3 currentEulerAngles = new Vector3(0, 0, 0);
+                bossTrasnform.eulerAngles = currentEulerAngles;
+                bossTrasnform.localScale = new Vector3(1.3f, 1.3f, 1f);
+            }
+            else
+            {
+                bossTrasnform.localScale = new Vector3(1.3f, 1.3f, 1f);
+            }
+
+
         }
 
     }
