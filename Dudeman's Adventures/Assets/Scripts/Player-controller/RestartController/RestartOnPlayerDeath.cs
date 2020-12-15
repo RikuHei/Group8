@@ -158,7 +158,9 @@ public class RestartOnPlayerDeath : MonoBehaviour
         {
             scoreManager.SaveScoreOnDeath();
         }
-        SceneManager.LoadScene("Level05");
+        Scene thisScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(thisScene.name);
+        Debug.Log("Game restarted");
     }
 
     public void EnableDamageImmunity(float time, bool powerUp)
