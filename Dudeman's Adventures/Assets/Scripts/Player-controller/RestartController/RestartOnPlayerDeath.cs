@@ -93,7 +93,7 @@ public class RestartOnPlayerDeath : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (SceneManager.GetActiveScene().buildIndex != 6)
+        if (SceneManager.GetActiveScene().buildIndex != 7)
         {
             if (!damageImmunity)
             {

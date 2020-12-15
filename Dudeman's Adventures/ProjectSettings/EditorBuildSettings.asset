@@ -13,22 +13,22 @@ EditorBuildSettings:
     guid: 7114a30a00147c74bb093f16e035384f
   - enabled: 1
     path: Assets/Scenes/Level01.unity
-    guid: e06b292fe75d6f54690048dfa61f7284
+    guid: 0c99318051bd4164e8655446e7c673ea
   - enabled: 1
     path: Assets/Scenes/Level02.unity
-    guid: 1c48bc4f1070b4c48a72a35918d5d12a
+    guid: c8bf10a50ebe7e149b74eda820c44998
   - enabled: 1
     path: Assets/Scenes/Level03.unity
-    guid: 7da9e7fa349c466498ed296b3f611c87
+    guid: e06b292fe75d6f54690048dfa61f7284
   - enabled: 1
     path: Assets/Scenes/Level04.unity
-    guid: 0bf10af0d30bef84ba895b546e0a906c
+    guid: 1c48bc4f1070b4c48a72a35918d5d12a
   - enabled: 1
     path: Assets/Scenes/Level05.unity
-    guid: fffbe1580e1d7db49a808106adf22683
+    guid: 0bf10af0d30bef84ba895b546e0a906c
   - enabled: 1
     path: Assets/Scenes/Level06.unity
-    guid: 63e766e7b9ff76a41b26b39f4d288165
+    guid: 6d7c9473b05cf6547a2853bf14992f05
   - enabled: 1
     path: Assets/Scenes/HighScores.unity
     guid: 9d8bd47687f57c548bf10fcb37075f0e
