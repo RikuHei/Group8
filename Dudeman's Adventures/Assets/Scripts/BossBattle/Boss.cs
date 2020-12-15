@@ -12,6 +12,7 @@ public class Boss : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip deathAudio;
     public AudioClip deadAudio;
+    public AudioClip introAudio;
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -34,6 +35,12 @@ public class Boss : MonoBehaviour
             transform.Rotate(0f, 180f, 0f);
             isFlipped = true;
         }
+    }
+
+    public void PlayAggro()
+    {
+        audioSource.clip = introAudio;
+        audioSource.Play();
     }
 
     public void PlayDeathSound()
