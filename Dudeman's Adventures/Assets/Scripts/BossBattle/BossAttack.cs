@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossRun : StateMachineBehaviour
+public class BossAttack : StateMachineBehaviour
 {
-
     Transform player;
     Rigidbody2D rb;
     Boss boss;
 
-    public float speed = 8f;
-    public float attackRange = 3f;
+    public float speed = 0f;
+    public float attackRange = 5f;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -36,15 +35,11 @@ public class BossRun : StateMachineBehaviour
         Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
         rb.MovePosition(newPos);
 
-        // if boss is cloes engouh to player, he will attack
-        if (player.position.y < -0.7)
+        // if player is not in attack range, boss goes back to running animation
+        if (Vector2.Distance(player.position, rb.position) >= attackRange)
         {
-            if (Vector2.Distance(player.position, rb.position) <= attackRange)
-            {
-                animator.SetBool("IsInRange", true);
-            }
+            animator.SetBool("IsInRange", false);
         }
-
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

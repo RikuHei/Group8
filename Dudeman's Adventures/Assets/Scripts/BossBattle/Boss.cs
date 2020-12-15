@@ -7,7 +7,16 @@ public class Boss : MonoBehaviour
 
     public Transform player;
 
-    public bool isFlipped = false;
+    public static bool isFlipped = false;
+
+    public AudioSource audioSource;
+    public AudioClip deathAudio;
+    public AudioClip deadAudio;
+    public AudioClip introAudio;
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     public void LookAtPlayer()
     {
@@ -28,4 +37,21 @@ public class Boss : MonoBehaviour
         }
     }
 
+    public void PlayAggro()
+    {
+        audioSource.clip = introAudio;
+        audioSource.Play();
+    }
+
+    public void PlayDeathSound()
+    {
+        audioSource.clip = deathAudio;
+        audioSource.Play();
+    }
+
+    public void DeadAudio()
+    {
+        audioSource.clip = deadAudio;
+        audioSource.Play();
+    }
 }
