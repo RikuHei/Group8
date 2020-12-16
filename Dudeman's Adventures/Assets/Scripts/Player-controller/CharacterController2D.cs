@@ -37,10 +37,18 @@ public class CharacterController2D : MonoBehaviour
     private int defaultPlayerGravity = 1;
     private int playerJumpGravity = 15;
 
+    public AudioClip[] jump;
+    public AudioSource audioSource;
+    public AudioListener audioListener;
+    private AudioClip jumpClip;
+
+
     private void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        audioListener = GetComponent<AudioListener>();
+        audioSource = gameObject.GetComponent<AudioSource>();
 
         if (OnLandEvent == null)
             OnLandEvent = new UnityEvent();
@@ -103,7 +111,7 @@ public class CharacterController2D : MonoBehaviour
                 }
 
                 // Reduce the speed by the crouchSpeed multiplier
-                move *= m_CrouchSpeed;
+                // move *= m_CrouchSpeed;
 
                 // Disable one of the colliders when crouching
                 if (m_CrouchDisableCollider != null)
@@ -149,6 +157,8 @@ public class CharacterController2D : MonoBehaviour
             m_Rigidbody2D.gravityScale = playerJumpGravity;
 
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce), ForceMode2D.Impulse);
+
+            PlayRandomJump();
         }
     }
 
@@ -162,37 +172,49 @@ public class CharacterController2D : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
     }
-    
+
     //Switch the shoot point of the gun according to the position of the player and key inputs
-	void CheckWeaponDirection()
-	{
+    void CheckWeaponDirection()
+    {
         //Added a null check here to make sure that the script doesnt break scenes where there isnt a gun
-        if(shootPoint != null)
+        if (shootPoint != null)
         {
             //While holding 'w', the shoot point is directly upwards
-            if (Input.GetKey (KeyCode.W))
+            if (Input.GetKey(KeyCode.W))
             {
                 shootPoint.rotation = Quaternion.Euler(0, 0, 90 * transform.localScale.y);
             }
 
             //while holding 's', the shoot point is directly downwards
-            else if(Input.GetKey (KeyCode.S))
+            else if (Input.GetKey(KeyCode.S))
             {
                 shootPoint.rotation = Quaternion.Euler(0, 0, 270 * transform.localScale.y);
             }
             else
             {
                 //when the character is facing right, the shoot point is pointed right
-                if(m_FacingRight)
+                if (m_FacingRight)
                 {
                     shootPoint.rotation = Quaternion.Euler(0, 0, 0);
                 }
                 //when the character is facing left, the shoot point is pretty obviously pointed to the left
-                else if(!m_FacingRight)
+                else if (!m_FacingRight)
                 {
                     shootPoint.rotation = Quaternion.Euler(0, 180, 0);
                 }
             }
+        }
+    }
+
+    //function to play random jump sound
+    void PlayRandomJump()
+    {
+        if (!Pause.isPaused && !RestartController.isDead)
+        {
+            int index = Random.Range(0, jump.Length);
+            jumpClip = jump[index];
+            audioSource.clip = jumpClip;
+            audioSource.Play();
         }
     }
 }

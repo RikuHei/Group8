@@ -9,16 +9,28 @@ public class WeaponScript : MonoBehaviour
     public GameObject bulletPrefab;
     public float fireRate = 10;
     float nextTimeToFire = 0;
-    
+
+    public AudioClip[] shoot;
+    public AudioSource audioSource;
+    public AudioListener audioListener;
+    private AudioClip shootClip;
+    public Animator animator;
+
+    void Start()
+    {
+        audioListener = GetComponent<AudioListener>();
+        audioSource = gameObject.GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
+    }
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1"))
         {
             //Timer for fire rate
-            if(Time.time > nextTimeToFire)
+            if (Time.time > nextTimeToFire)
             {
-                nextTimeToFire = Time.time+4/fireRate;
+                nextTimeToFire = Time.time + 4 / fireRate;
                 Shoot();
             }
         }
@@ -26,6 +38,25 @@ public class WeaponScript : MonoBehaviour
 
     void Shoot()
     {
-       Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
+        if (!Pause.isPaused && !RestartController.isDead)
+        {
+            Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
+            PlayRandom();
+            animator.SetBool("isFiring", true);
+            Invoke("ResetFiring", 0.1f);
+        }
+    }
+
+    void ResetFiring()
+    {
+        animator.SetBool("isFiring", false);
+    }
+
+    void PlayRandom()
+    {
+        int index = Random.Range(0, shoot.Length);
+        shootClip = shoot[index];
+        audioSource.clip = shootClip;
+        audioSource.Play();
     }
 }

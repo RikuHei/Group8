@@ -21,7 +21,18 @@ public class RestartOnPlayerDeath : MonoBehaviour
     public HealthBar healthBar;
     public Animator animator;
 
-    
+    private ScoreManager scoreManager;
+    [SerializeField] private bool ResetScoreOnDeath = false;
+
+    public LevelManager levelManager;
+    public MovementController movementController;
+    public CharacterController2D characterController2D;
+
+    public AudioClip[] audioAudio;
+    private AudioClip audioClip;
+    public AudioSource audioSource;
+    public AudioClip[] hitAudio;
+    private AudioClip hitClip;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +40,11 @@ public class RestartOnPlayerDeath : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         animator = GetComponent<Animator>();
+        scoreManager = FindObjectOfType<ScoreManager>();
+        levelManager = FindObjectOfType<LevelManager>();
+        movementController = FindObjectOfType<MovementController>();
+        characterController2D = FindObjectOfType<CharacterController2D>();
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -37,40 +53,119 @@ public class RestartOnPlayerDeath : MonoBehaviour
         //Pressing Space makes the player take 1 damage.
         if (Input.GetKeyDown(KeyCode.F))
         {
-            TakeDamage(1);
+            PlayRandomAudio();
         }
+        if (RestartController.isDead)
+        {
+            healthBar.SetHealth(0);
+            movementController.runSpeed = 0;
+            characterController2D.m_JumpForce = 0;
+            animator.SetBool("IsDead", true);
+        }
+        /*if (!immunityOnCooldown)
+        {
+            damageImmunity = false;
+        }*/
     }
 
     public void RestartSceneOnDeath()
     {
+        // set isDead state
+        RestartController.isDead = false;
+
+        // restore movement speed, jumpforce and return to idle animation
+        movementController.runSpeed = 50;
+        characterController2D.m_JumpForce = 70;
+        animator.SetBool("IsDead", false);
+
+        // set player hp back to max
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+
+        // respawn player back to spawnpoint
+        levelManager.RespawnPlayer();
+
+        if (!ResetScoreOnDeath)
+        {
+            scoreManager.SaveScoreOnDeath();
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (SceneManager.GetActiveScene().buildIndex != 7)
+        {
+            if (!damageImmunity)
+            {
+                currentHealth -= damage;
+                healthBar.SetHealth(currentHealth);
+
+                if (currentHealth < 1)
+                {
+                    RestartController.isDead = true;
+                    Die();
+                    PlayRandomHit();
+                }
+            }
+            if (!immunityOnCooldown)
+            {
+                immunityFromPowerUp = false;
+                EnableDamageImmunity(defaultImmunityTime, immunityFromPowerUp);
+            }
+        }
+        else
+        {
+            if (!damageImmunity)
+            {
+                currentHealth -= damage;
+                healthBar.SetHealth(currentHealth);
+
+                if (currentHealth < 1)
+                {
+                    RestartController.isDead = true;
+                    Invoke("DieInBossScene", 1);
+                    PlayRandomHit();
+                }
+            }
+            if (!immunityOnCooldown)
+            {
+                immunityFromPowerUp = false;
+                EnableDamageImmunity(defaultImmunityTime, immunityFromPowerUp);
+            }
+        }
+    }
+
+    public void Die()
+    {
+        Invoke("RestartSceneOnDeath", 1);
+    }
+
+    void DieInBossScene()
+    {
+        // set isDead state
+        RestartController.isDead = false;
+
+        // restore movement speed, jumpforce and return to idle animation
+        movementController.runSpeed = 50;
+        characterController2D.m_JumpForce = 70;
+        animator.SetBool("IsDead", false);
+
+        // set player hp back to max
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+
+        if (!ResetScoreOnDeath)
+        {
+            scoreManager.SaveScoreOnDeath();
+        }
         Scene thisScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(thisScene.name);
         Debug.Log("Game restarted");
     }
 
-    public void TakeDamage(int damage)
-    {
-        if(!damageImmunity && !immunityOnCooldown)
-        {
-            currentHealth -= damage;
-            healthBar.SetHealth(currentHealth);
-
-            immunityFromPowerUp = false;
-            EnableDamageImmunity(defaultImmunityTime, immunityFromPowerUp);
-
-            if (currentHealth < 1)
-            {
-                GameObject.Find("Player").GetComponent<MovementController>().runSpeed = 0;
-                GameObject.Find("Player").GetComponent<CharacterController2D>().m_JumpForce = 0;
-                animator.SetBool("IsDead", true);
-                Invoke("RestartSceneOnDeath", 3f);
-            }
-        }
-    }
-
     public void EnableDamageImmunity(float time, bool powerUp)
     {
-        if(!immunityTimerIsRunning)
+        if (!immunityTimerIsRunning)
         {
             damageImmunity = true;
             immunityRoutine = StartCoroutine(ImmunityTimer(time));
@@ -94,7 +189,9 @@ public class RestartOnPlayerDeath : MonoBehaviour
     public IEnumerator ImmunityTimer(float time)
     {
         immunityTimerIsRunning = true;
+        Debug.Log("test1");
         yield return new WaitForSeconds(time);
+        Debug.Log("test2");
         damageImmunity = false;
         immunityTimerIsRunning = false;
         cooldownRoutine = StartCoroutine(CooldownTimer(immunityCooldownTime));
@@ -103,8 +200,26 @@ public class RestartOnPlayerDeath : MonoBehaviour
     public IEnumerator CooldownTimer(float time)
     {
         immunityOnCooldown = true;
+        Debug.Log("test3");
         yield return new WaitForSeconds(time);
+        Debug.Log("test4");
         immunityOnCooldown = false;
+    }
+
+    void PlayRandomAudio()
+    {
+        int index = Random.Range(0, audioAudio.Length);
+        audioClip = audioAudio[index];
+        audioSource.clip = audioClip;
+        audioSource.Play();
+    }
+
+    void PlayRandomHit()
+    {
+        int index = Random.Range(0, hitAudio.Length);
+        hitClip = hitAudio[index];
+        audioSource.clip = hitClip;
+        audioSource.Play();
     }
 }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class AIBulletController : MonoBehaviour
 {
     public float speed;
+    public int damage;
 
     private Transform player;
     private Vector2 target;
@@ -31,8 +32,7 @@ public class AIBulletController : MonoBehaviour
     {
         if(col.gameObject.tag == "Player")
         {
-            GameObject.Find("Player").GetComponent<RestartOnPlayerDeath>().TakeDamage(5);
-            Debug.Log("Hit the player");
+            GameObject.Find("Player").GetComponent<RestartOnPlayerDeath>().TakeDamage(damage);
             Destroy(this.gameObject);
         }
         else
@@ -45,7 +45,6 @@ public class AIBulletController : MonoBehaviour
     void DestroyBullet()
     {
         Destroy(this.gameObject);
-        Debug.Log("Was destroy by the enviorment");
     }
 
 }
