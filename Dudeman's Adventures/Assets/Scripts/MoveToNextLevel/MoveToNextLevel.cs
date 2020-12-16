@@ -46,7 +46,7 @@ public class MoveToNextLevel : MonoBehaviour
                 Debug.Log("Level 5 = " + PlayerPrefs.GetFloat("Level05HighScore"));
                 Debug.Log("Level 6 = " + PlayerPrefs.GetFloat("Level06HighScore"));
 
-                //Show Win Screen or Somethin.
+                SceneManager.LoadScene("HighScores");
             }
             else
             {
